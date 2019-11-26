@@ -6,4 +6,10 @@ Updated Project:
 
 CS 151 Project Change Log 
 
-1. Finished exception handling for signup GUI buttons
+1. Finished exception handling for signup and login GUI buttons 
+
+TODO:
+
+- Link other GUI classes to the userSession HashMap and itemSession HashMap.
+
+- Create sample text file to test if reading from file works. 
