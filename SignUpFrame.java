@@ -77,7 +77,8 @@ public class SignUpFrame extends JFrame{
     public class ClickListener1 implements ActionListener {
  
         public void actionPerformed(ActionEvent event) {
-            System.exit(0);
+        	cont = false;
+        	setVisible(false);
         }
     }
  
@@ -112,7 +113,7 @@ public class SignUpFrame extends JFrame{
             	UserClass found = userData.generateUser(usernameEntered, passwordEntered, null);
             	JOptionPane.showMessageDialog(null, "You have successfully created an account.\nPlease log in.", "Success!",
 						JOptionPane.INFORMATION_MESSAGE);
-            	System.out.println(found.getUserName());
+            	System.out.println("signupframe: " + found.getUserName());
             	
             	cont = false;
             	setVisible(false);

@@ -20,7 +20,7 @@ public class Commerce {
 		sessionUsers.generateUser("Bob", "Pass", items);
 		sessionUsers.generateUser("Alice", "Pass2", items);
 		sessionUsers.generateUser("Trudy", "Pass3", items);
-		Viewer view = new Viewer(sessionUsers); //passing in UserManager sessionUsers variable as a parameter 
+		Viewer view = new Viewer(sessionUsers);  //passing in UserManager sessionUsers variable as a parameter 
 		view.display(); //start the GUI system
 		
 		//printing out hash map to make sure user got stored.

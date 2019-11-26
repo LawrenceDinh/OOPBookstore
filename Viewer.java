@@ -36,6 +36,7 @@ public void display() {
 
 		SignUpFrame.setVisible(false);
         
+		System.out.println("testpppp");
 
  
  

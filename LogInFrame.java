@@ -71,7 +71,8 @@ public class LogInFrame extends JFrame{
     public class ClickListener1 implements ActionListener {
  
         public void actionPerformed(ActionEvent event) {
-            System.exit(0);
+        	cont = false;
+        	setVisible(false);
         }
     }
  
