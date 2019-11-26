@@ -6,12 +6,12 @@ EDGE CASE- The program fails if textfields are left empty during account creatio
 ***/
  
 import javax.swing.*;
- 
+
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.Scanner;
  
 public class SignUpFrame extends JFrame{
  
@@ -52,6 +52,7 @@ public class SignUpFrame extends JFrame{
         JButton cont = new JButton("Login Existing Account");
  
         JPanel panel = new JPanel(new GridLayout(0, 1));
+        title.setFont(new Font("Arial", Font.PLAIN, 25));
         panel.add(title);
  
         panel.add(empty);
@@ -60,9 +61,9 @@ public class SignUpFrame extends JFrame{
         panel.add(passwordLabel);
         panel.add(passwordField);
         panel.add(loginButton);
-        panel.add(exitButton);
         panel.add(empty);
         panel.add(cont);
+        panel.add(exitButton);
         add(panel);
  
         ActionListener exitListener = new ClickListener1();

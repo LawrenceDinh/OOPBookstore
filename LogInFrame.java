@@ -1,10 +1,10 @@
 import javax.swing.*;
- 
+
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.Scanner;
  
 public class LogInFrame extends JFrame{
  
@@ -44,7 +44,8 @@ public class LogInFrame extends JFrame{
        
  
         JPanel panel = new JPanel(new GridLayout(0, 1));
-       
+        title.setFont(new Font("Arial", Font.PLAIN, 25));
+        
         panel.add(title);
  
         panel.add(empty);
@@ -53,8 +54,10 @@ public class LogInFrame extends JFrame{
         panel.add(passwordLabel);
         panel.add(passwordField);
         panel.add(loginButton);
-        panel.add(exitButton);
+        panel.add(empty);
         panel.add(signUpPage);
+        panel.add(exitButton);
+
         add(panel);
  
         ActionListener exitListener = new ClickListener1();
