@@ -115,7 +115,7 @@ public class SignUpFrame extends JFrame{
             	
             	cont = false;
             	setVisible(false);
-            	frame.setVisible(false);
+            	frame.setVisible(true);
             	
             	//call the next DASHBOARD GUI
             }
