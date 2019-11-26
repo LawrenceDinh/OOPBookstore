@@ -124,6 +124,9 @@ public class SignUpFrame extends JFrame{
    
 
 
+    public void setBool(Boolean bool) {
+    	cont = bool;
+    }
     
     public boolean getBool() {
         return cont;

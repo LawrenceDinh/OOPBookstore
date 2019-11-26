@@ -6,6 +6,7 @@ public class Viewer {
     UserManager users;
     JFrame LogInFrame;
     JFrame SignUpFrame;
+    private boolean cont = false;
     
     public Viewer(UserManager userData) {
     	users=userData;
@@ -20,6 +21,7 @@ public void display() {
 			//users = UserManager Users
 		    LogInFrame = new LogInFrame(users); 
 		    SignUpFrame = new SignUpFrame(users, LogInFrame);
+		   
 		    LogInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    SignUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	       
@@ -33,8 +35,13 @@ public void display() {
 		}
 
 		SignUpFrame.setVisible(false);
-        LogInFrame.setVisible(true);
-      
+        
+
+ 
+ 
+ 
+ 
+ 
 
 	}
     

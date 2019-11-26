@@ -10,14 +10,15 @@ public class LogInFrame extends JFrame{
  
     private static final int FRAME_WIDTH = 500;
     private static final int FRAME_HEIGHT =300;
-    private static boolean cont = true;
+    private boolean cont = true;
 
+    private boolean prev = false;
     static JTextField userNameField;
     static JTextField passwordField;
     private String passwordEntered;
     private String usernameEntered;
-    
     private UserManager userData;
+   
  
     public LogInFrame(UserManager users) throws FileNotFoundException
      {
@@ -92,6 +93,7 @@ public class LogInFrame extends JFrame{
 						JOptionPane.INFORMATION_MESSAGE);
             	System.out.println(found.getUserName());
             	setVisible(false);
+            	cont = false;
             	
             	//call the next DASHBOARD GUI
             }
@@ -106,15 +108,32 @@ public class LogInFrame extends JFrame{
     	 
         public void actionPerformed(ActionEvent event) {
 
-            
+        	cont = true;
+        	prev = true;
+            System.out.println("back");
             setVisible(false);
-            cont = false;
+
+            try {
+                LogInFrame n = new LogInFrame(userData);
+				new SignUpFrame(userData, n).setVisible(true);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+      
+            
         }
 
         }
     
    // public 
 
+    public void setBool(Boolean bool) {
+    	prev = bool;
+    }
+    public boolean getPrev() {
+    	return prev;
+    }
     public boolean getBool() {
         return cont;
     }
