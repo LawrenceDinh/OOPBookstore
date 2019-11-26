@@ -98,7 +98,7 @@ public class SignUpFrame extends JFrame{
             if((usernameEntered.isEmpty()) && (passwordEntered.isEmpty()))
             {
 				System.out.println("failed");
-            	JOptionPane.showMessageDialog(null, "Error logging into account.\nYou did not enter a valid username or password.\nPlease try again.", "Input Error!",
+            	JOptionPane.showMessageDialog(null, "Error registering account.\nYou did not enter a valid username or password.\nPlease try again.", "Input Error!",
 						JOptionPane.ERROR_MESSAGE);
             }
             
