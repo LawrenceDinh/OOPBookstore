@@ -52,7 +52,7 @@ public class SignUpFrame extends JFrame{
         JButton cont = new JButton("Login Existing Account");
  
         JPanel panel = new JPanel(new GridLayout(0, 1));
-        title.setFont(new Font("Arial", Font.PLAIN, 25));
+        title.setFont(new Font("Arial", Font.PLAIN, 25)); //set title font
         panel.add(title);
  
         panel.add(empty);
