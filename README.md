@@ -1,4 +1,7 @@
 # CS-151-Project
+
+Please note you can download this project by clicking on "Clone or download"
+
 MOST UPDATED VERSION: CS 151 Project- Linking together the HashMap databases to User Interfaces
 
 
