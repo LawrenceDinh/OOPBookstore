@@ -1,9 +1,5 @@
 /////////////////
- 
-/***
-NOTE:
-EDGE CASE- The program fails if textfields are left empty during account creation
-***/
+
  
 import javax.swing.*;
 
