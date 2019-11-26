@@ -1,7 +1,7 @@
 # CS-151-Project
 MOST UPDATED VERSION: CS 151 Project- Linking together the HashMap databases to User Interfaces
 
-CS 151 Project Change Log [LD]
+CS 151 Project Change Log [L.D.]
 
 1. Linked together the Sign Up and Login GUI with HashMap databases instantiated in Commerce.java. 
 2. Finalized implementations for authenticating login and passwords for UserClass objects from the login page.
