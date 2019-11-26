@@ -89,7 +89,7 @@ public class LogInFrame extends JFrame{
            
             passwordEntered =  passwordEntered.replaceAll("\\s+","");
            
-            if((usernameEntered.isEmpty()) && (passwordEntered.isEmpty()))
+            if((usernameEntered.isEmpty()) || (passwordEntered.isEmpty()))
             {
 				System.out.println("failed");
             	JOptionPane.showMessageDialog(null, "Error logging into account.\nYou did not enter a valid username or password.\nPlease try again.", "Input Error!",

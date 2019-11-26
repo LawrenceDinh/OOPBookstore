@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 public class Commerce {
 
@@ -21,5 +22,11 @@ public class Commerce {
 		sessionUsers.generateUser("Trudy", "Pass3", items);
 		Viewer view = new Viewer(sessionUsers); //passing in UserManager sessionUsers variable as a parameter 
 		view.display(); //start the GUI system
-	}
+		
+		//printing out hash map to make sure user got stored.
+		for (Map.Entry <Long, UserClass> user: sessionUsers.getUserMap().entrySet()) {
+			long res = user.getKey();
+			System.out.println("test:" + sessionUsers.searchUserID(res).getUserName());
+		}
+		}
 }
