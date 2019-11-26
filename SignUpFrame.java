@@ -90,7 +90,19 @@ public class SignUpFrame extends JFrame{
         //    usernameEntered = "Bob";
           //  passwordEntered = "Pass";
       //      System.out.println(usernameEntered + passwordEntered);
-            if(userData.searchCredentials(usernameEntered, passwordEntered)!=null) {
+            
+            usernameEntered =  usernameEntered.replaceAll("\\s+","");
+            
+            passwordEntered =  passwordEntered.replaceAll("\\s+","");
+           
+            if((usernameEntered.isEmpty()) && (passwordEntered.isEmpty()))
+            {
+				System.out.println("failed");
+            	JOptionPane.showMessageDialog(null, "Error logging into account.\nYou did not enter a valid username or password.\nPlease try again.", "Input Error!",
+						JOptionPane.ERROR_MESSAGE);
+            }
+            
+            else if(userData.searchCredentials(usernameEntered, passwordEntered)!=null) {
 				System.out.println("already exists");
             	JOptionPane.showMessageDialog(null, "This account already exists!\nPlease use the Login page to sign in.", "Error!",
 						JOptionPane.ERROR_MESSAGE);

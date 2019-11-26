@@ -15,8 +15,8 @@ public class LogInFrame extends JFrame{
     private boolean prev = false;
     static JTextField userNameField;
     static JTextField passwordField;
-    private String passwordEntered;
-    private String usernameEntered;
+    private String passwordEntered = null;
+    private String usernameEntered = null;
     private UserManager userData;
    
  
@@ -82,12 +82,25 @@ public class LogInFrame extends JFrame{
         //    usernameEntered = "Bob";
           //  passwordEntered = "Pass";
       //      System.out.println(usernameEntered + passwordEntered);
-            if(userData.searchCredentials(usernameEntered, passwordEntered)==null) {
-				System.out.println("you failed");
-            	JOptionPane.showMessageDialog(null, "Error logging into account.\nPlease try again.", "Error!",
+            usernameEntered =  usernameEntered.replaceAll("\\s+","");
+           
+            passwordEntered =  passwordEntered.replaceAll("\\s+","");
+           
+            if((usernameEntered.isEmpty()) && (passwordEntered.isEmpty()))
+            {
+				System.out.println("failed");
+            	JOptionPane.showMessageDialog(null, "Error logging into account.\nYou did not enter a valid username or password.\nPlease try again.", "Input Error!",
+						JOptionPane.ERROR_MESSAGE);
+            }
+            
+            else if(userData.searchCredentials(usernameEntered, passwordEntered)==null) {
+				System.out.println("failed");
+				System.out.println("w: " + usernameEntered + passwordEntered);
+            	JOptionPane.showMessageDialog(null, "Error logging into account.\nPlease try again.", "Invalid Info!",
 						JOptionPane.ERROR_MESSAGE);
             }
             else {
+				System.out.println("w: " + usernameEntered + passwordEntered);
             	UserClass found = userData.searchCredentials(usernameEntered, passwordEntered);
             	JOptionPane.showMessageDialog(null, "You have successfully logged in.", "Success!",
 						JOptionPane.INFORMATION_MESSAGE);
@@ -96,9 +109,14 @@ public class LogInFrame extends JFrame{
             	cont = false;
             	
             	//call the next DASHBOARD GUI
+            
             }
              //connected to the userData userManager object. 
  
+            
+   
+            
+            
         }
         
     }
