@@ -51,4 +51,14 @@ public class UserClass
 		listedItemIDs=newListedItemIDs;
 	}
 	
+	public void addListedItemID(long newListedItemID)
+	{
+		listedItemIDs.add(newListedItemID);
+	}
+	
+	public void removeListedItemID(long newListedItemID)
+	{
+		listedItemIDs.remove(newListedItemID);
+	}
+	
 }

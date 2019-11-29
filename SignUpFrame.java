@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.util.concurrent.CountDownLatch;
  
 public class SignUpFrame extends JFrame{
  
@@ -21,14 +22,19 @@ public class SignUpFrame extends JFrame{
     private String usernameEntered;
     private UserManager userData;
     private JFrame frame;
+    private UserClass user;
+    private CountDownLatch latch;
+    
     //public static useClass userObj= new userClass();
  
-    public SignUpFrame(UserManager users, JFrame login) throws FileNotFoundException
+    public SignUpFrame(UserManager users, JFrame login, CountDownLatch signal) throws FileNotFoundException
      {
-     createComponents();
-     setSize(FRAME_WIDTH, FRAME_HEIGHT);
-     userData = users;
-     frame = login;
+		setSize(FRAME_WIDTH, FRAME_HEIGHT);
+		userData = users;
+		frame = login;
+		latch = signal;
+		createComponents();
+  
      }
    
 
@@ -68,17 +74,24 @@ public class SignUpFrame extends JFrame{
         exitButton.addActionListener(exitListener);
         loginButton.addActionListener(loginListener);
         cont.addActionListener(contListener);
+        
     }
  
+    
+    //exit program
     public class ClickListener1 implements ActionListener {
  
         public void actionPerformed(ActionEvent event) {
         	cont = false;
+        	dispose();
+        	((LogInFrame) frame).setBool(true);
         	setVisible(false);
+        	latch.countDown();
         }
     }
  
  
+    //try to sign up 
  
     public class ClickListener2 implements ActionListener {
  
@@ -106,10 +119,10 @@ public class SignUpFrame extends JFrame{
 						JOptionPane.ERROR_MESSAGE);
             }
             else {
-            	UserClass found = userData.generateUser(usernameEntered, passwordEntered, null);
+            	UserClass found = userData.generateUser(usernameEntered, passwordEntered);
             	JOptionPane.showMessageDialog(null, "You have successfully created an account.\nPlease log in.", "Success!",
 						JOptionPane.INFORMATION_MESSAGE);
-            	System.out.println("signupframe: " + found.getUserName());
+            	//System.out.println("signupframe: " + found.getUserName());
             	
             	cont = false;
             	setVisible(false);
@@ -123,16 +136,26 @@ public class SignUpFrame extends JFrame{
         
     }
    
+    
+    //go to login frame 
+    
     public class ClickListener3 implements ActionListener {
  
         public void actionPerformed(ActionEvent event) {
+        	System.out.println("login");
         	setVisible(false);
+        	user = ((LogInFrame) frame).getUser();
+        	//System.out.println("TWTW");
+        	dispose();
             frame.setVisible(true);
             cont = false;
         }
     }
    
 
+    public UserClass returnUser() {
+    	return user;
+    }
 
     public void setBool(Boolean bool) {
     	cont = bool;

@@ -1,32 +1,51 @@
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
+//TODO: Improve field editing capability (e.g. changing item description) between sessions
 public class Commerce {
 
-	public static void main(String[]args) {
+	public static void main(String[]args) throws FileNotFoundException, InterruptedException {
 		UserManager sessionUsers=new UserManager();
 		ItemManager sessionItems=new ItemManager();
 
-		//[Long user id] [string name] [string password] 
-		// [long id].[longid].[longid] for a user with 3 items posted.
-		HashSet<Long> items = new HashSet<Long>();
-		items.add((long) 470694636);
-		items.add((long) 273528742);
-		items.add((long) 218463281);
-
-		//Creating 3 test data objects of the User Class
-		// Manually from constructors
-		sessionUsers.generateUser("Bob", "Pass", items);
-		sessionUsers.generateUser("Alice", "Pass2", items);
-		sessionUsers.generateUser("Trudy", "Pass3", items);
-		Viewer view = new Viewer(sessionUsers);  //passing in UserManager sessionUsers variable as a parameter 
-		view.display(); //start the GUI system
+		//Test users and items
+		//sessionUsers.generateUser("Bob", "Pass");
+//		sessionUsers.generateUser("Alice", "Pass2");
+//		sessionUsers.generateUser("Trudy", "Pass3");
+//		sessionUsers.generateUser("Simon", "Pass 4");
+//		sessionItems.generateItem("duck", "toy", "it's a waterfowl toy", (long) 1);
+//		sessionUsers.searchUserID(1).addListedItemID(sessionItems.getPreviousItemID());
+//		sessionItems.generateItem("duck", "toy", "duk", (long) 2);
+//		sessionUsers.searchUserID(2).addListedItemID(sessionItems.getPreviousItemID());
+//		sessionItems.generateItem("goose", "toy", "a bird of a different color, for sale", (long) 1);
+//		sessionItems.searchItemID(sessionItems.getPreviousItemID()).setDescription("The best goose for sale");
+//		sessionUsers.searchUserID(1).addListedItemID(sessionItems.getPreviousItemID());
+//		sessionItems.generateItem("lawnmower", "yard equipment", "please buy my lawnmower cost $100000 I know what I have so no lowballing", (long)3);
+//		sessionUsers.searchUserID(3).addListedItemID(sessionItems.getPreviousItemID());
 		
-		//printing out hash map to make sure user got stored.
-		for (Map.Entry <Long, UserClass> user: sessionUsers.getUserMap().entrySet()) {
-			long res = user.getKey();
-			System.out.println("test:" + sessionUsers.searchUserID(res).getUserName());
+//		System.out.println("@@@"+sessionUsers.searchUserID(2).getUserName());
+//		System.out.println("III"+sessionItems.searchItemID(4).getItemName());
+		
+		
+		CountDownLatch loginSignal = new CountDownLatch(1);
+		//Commented out for testing non-gui things; uncomment to use
+		Viewer view = new Viewer(sessionUsers, loginSignal);  //passing in UserManager sessionUsers variable as a parameter 
+		view.display();
+		//loginSignal.countDown();
+		//loginSignal.await();
+		if (view.returnUser() != null) { //retrieving user instance from login
+		UserClass test = view.returnUser();
+		System.out.println("passed: " + test.getUserName());
 		}
+
+		
+		System.out.println(sessionUsers.getUserMap().toString());
+		//when ready to end the session
+		sessionItems.writeItems();
+		sessionUsers.writeUsers();
+		System.out.println("this end");
 		}
 }

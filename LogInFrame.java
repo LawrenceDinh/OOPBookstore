@@ -5,28 +5,33 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.util.concurrent.CountDownLatch;
  
 public class LogInFrame extends JFrame{
  
     private static final int FRAME_WIDTH = 500;
     private static final int FRAME_HEIGHT =300;
-    private boolean cont = true;
+    private boolean cont = false;
 
-    private boolean prev = false;
     static JTextField userNameField;
     static JTextField passwordField;
     private String passwordEntered = null;
     private String usernameEntered = null;
     private UserManager userData;
-   
+    private UserClass user;
+   private CountDownLatch latch;
+   private  JFrame sFrame;
  
-    public LogInFrame(UserManager users) throws FileNotFoundException
+    public LogInFrame(UserManager users, CountDownLatch signal, JFrame signUpFrame) throws FileNotFoundException
      {
+    	sFrame = signUpFrame;
      userData = users;
+     latch = signal;
      createComponents();
      setSize(FRAME_WIDTH, FRAME_HEIGHT);
+     
      }
-   
+
  
     private void createComponents() throws FileNotFoundException {
         userNameField = new JTextField(10);
@@ -34,12 +39,14 @@ public class LogInFrame extends JFrame{
  
         JLabel userNameLabel = new JLabel("Enter Username:");
         JLabel passwordLabel = new JLabel("Enter Password:");
+        
         JLabel title = new JLabel("Log In Screen");
         JLabel empty = new JLabel(" ");
         title.setHorizontalAlignment(JLabel.CENTER);
         JButton loginButton = new JButton("Login");
    
         JButton exitButton = new JButton("Exit Program");
+ 
         JButton signUpPage = new JButton("Back to Sign Up Page");
        
  
@@ -68,11 +75,15 @@ public class LogInFrame extends JFrame{
         signUpPage.addActionListener(signUpListener);
     }
  
+    
+    //exit 
     public class ClickListener1 implements ActionListener {
  
         public void actionPerformed(ActionEvent event) {
-        	cont = false;
+        	cont = true;
         	setVisible(false);
+        	latch.countDown();
+        	
         }
     }
  
@@ -99,18 +110,22 @@ public class LogInFrame extends JFrame{
             
             else if(userData.searchCredentials(usernameEntered, passwordEntered)==null) {
 				System.out.println("failed");
-				System.out.println("w: " + usernameEntered + passwordEntered);
+				System.out.println("input: " + usernameEntered + ", " + passwordEntered);
             	JOptionPane.showMessageDialog(null, "Error logging into account.\nPlease try again.", "Invalid Info!",
 						JOptionPane.ERROR_MESSAGE);
             }
             else {
-				System.out.println("w: " + usernameEntered + passwordEntered);
+				System.out.println("input: " + usernameEntered + ", " + passwordEntered);
             	UserClass found = userData.searchCredentials(usernameEntered, passwordEntered);
             	JOptionPane.showMessageDialog(null, "You have successfully logged in.", "Success!",
 						JOptionPane.INFORMATION_MESSAGE);
-            	System.out.println(found.getUserName());
+            	//System.out.println("success: " + found.getUserName());
+            	
+            	user = found;
             	setVisible(false);
-            	cont = false;
+            	cont = true;
+
+            	latch.countDown();
             	
             	//call the next DASHBOARD GUI
             
@@ -118,45 +133,50 @@ public class LogInFrame extends JFrame{
              //connected to the userData userManager object. 
  
             
-   
             
             
         }
         
     }
    
+    public UserClass getUser() {
+    	return user;
+    }
    
+
     public class ClickListener3 implements ActionListener {
     	 
         public void actionPerformed(ActionEvent event) {
 
         	cont = true;
-        	prev = true;
             System.out.println("back");
             setVisible(false);
 
-            try {
-                LogInFrame n = new LogInFrame(userData);
-				new SignUpFrame(userData, n).setVisible(true);
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-      
-            
-        }
+        
+            	//exit = userData.generateUser("admin","pass");
+            	//user = exit;
+				sFrame.setVisible(true);
 
+			
+      
         }
+  }
+        
     
    // public 
 
     public void setBool(Boolean bool) {
-    	prev = bool;
+    	cont = bool;
     }
-    public boolean getPrev() {
-    	return prev;
-    }
+    
     public boolean getBool() {
         return cont;
     }
+    
+    public void updatesFrame(JFrame frame) {
+    	sFrame = frame;
+    }
+    
 }
+
+

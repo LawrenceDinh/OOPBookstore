@@ -18,12 +18,14 @@ public class ItemManager
 	private HashMap<Long, ItemClass> itemMap;
 	private boolean itemsFull;
 	private long lastItemID;
+	private long previousItemID;
 	
 	public ItemManager()
 	{
-		itemMap=null;
+		itemMap=new HashMap<Long, ItemClass>();
 		itemsFull=false;
 		lastItemID=0;
+		previousItemID=0;
 		readItems();
 	}
 	
@@ -32,12 +34,52 @@ public class ItemManager
 		return itemMap.get(id);
 	}
 	
-	public ItemClass generateItem(String itemName, String category, String description, long sellerID, boolean deleted)
+	public HashMap<Long, ItemClass> searchItemName(String name)
+	{
+		Iterator<Map.Entry<Long, ItemClass>> itr = itemMap.entrySet().iterator();
+		HashMap<Long, ItemClass> matches=new HashMap<Long, ItemClass>();
+		while(itr.hasNext())
+    	{
+			
+			ItemClass tempItem=itr.next().getValue();
+			String checkedName=tempItem.getItemName();
+			if(name.toLowerCase().equals(checkedName.toLowerCase()))
+			{
+				matches.put(tempItem.getItemID(), tempItem);
+			}
+    	}
+		return matches;
+	}
+	
+	public HashMap<Long, ItemClass> searchItemCategory(String category)
+	{
+		Iterator<Map.Entry<Long, ItemClass>> itr = itemMap.entrySet().iterator();
+		HashMap<Long, ItemClass> matches=new HashMap<Long, ItemClass>();
+		while(itr.hasNext())
+    	{
+			
+			ItemClass tempItem=itr.next().getValue();
+			String checkedName=tempItem.getCategory();
+			if(category.toLowerCase().equals(checkedName.toLowerCase()))
+			{
+				matches.put(tempItem.getItemID(), tempItem);
+			}
+    	}
+		return matches;
+	}
+	
+	public ItemClass generateItem(String itemName, String category, String description, long sellerID)
 	{
 		lastItemID++;
-		ItemClass current=new ItemClass(lastItemID, itemName, category, description, sellerID, deleted);
+		ItemClass current=new ItemClass(lastItemID, itemName, category, description, sellerID, false);
 		itemMap.put(lastItemID, current);
+		previousItemID=Long.valueOf(lastItemID);
 		return current;
+	}
+	
+	public long getPreviousItemID()
+	{
+		return previousItemID;
 	}
 
 	public void deleteItem(Long aItemID)
@@ -67,11 +109,12 @@ public class ItemManager
 	        	else if(first)
 	        	{
 	        		lastItemID=Long.parseLong(line);
+	        		first=false;
 	        	}
 	        	else
 	        	{
 	        		String[] temp=new String[6];
-	        		temp=line.split(" ");
+	        		temp=line.split("~");
 	        		boolean deletedStatus=false;
 	        		if(temp[5]=="1")
 	        		{
@@ -123,7 +166,7 @@ public class ItemManager
 	            		deletionStatusString="1";
 	            	}
 
-	                String line=tempStringID + " " + tempItemName + " " + tempCategory+ " " + tempDescription + " " + tempSellerID + " " + deletionStatusString;
+	                String line=tempStringID + "~" + tempItemName + "~" + tempCategory+ "~" + tempDescription + "~" + tempSellerID + "~" + deletionStatusString;
 	                bw.write(line);
 	                bw.newLine();
 	        	}

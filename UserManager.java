@@ -17,15 +17,17 @@ import java.util.Map;
 //TODO: write test program and test this code
 public class UserManager 
 {
-	private HashMap<Long, UserClass> userMap = new HashMap<Long, UserClass>();
+	private HashMap<Long, UserClass> userMap;
 	private boolean usersFull;
 	private long lastUserID;
+	private long previousUserID;
 	
 	public UserManager()
 	{
-		//userMap=null;
+		userMap=new HashMap<Long, UserClass>();
 		usersFull=false;
 		lastUserID=0;
+		previousUserID=0;
 		readUsers();
 	}
 	
@@ -34,25 +36,60 @@ public class UserManager
 		return userMap.get(id);
 	}
 	
+	public UserClass searchUserName(String name)
+	{
+		Iterator<Map.Entry<Long, UserClass>> itr = userMap.entrySet().iterator();
+		while(itr.hasNext())
+    	{
+			UserClass tempUser=itr.next().getValue();
+			String checkedName=tempUser.getUserName();
+			if(name.equals(checkedName))
+			{
+				return tempUser;
+			}
+    	}
+		return null;
+	}
+	
+	
+	//use this method for account signup to prevent duplicate names
+	public boolean userNameFree(String newUserName)
+	{
+		Iterator<Map.Entry<Long, UserClass>> itr = userMap.entrySet().iterator();
+		while(itr.hasNext())
+    	{
+			UserClass tempUser=itr.next().getValue();
+			String checkedName=tempUser.getUserName();
+			if(newUserName.equals(checkedName))
+			{
+				return false;
+			}
+    	}
+		return true;
+	}
+	
+	
+	
 	public void addUser(UserClass aUser)
 	{
 		userMap.put(aUser.getUserID(),aUser);
 	}
 	
-	public UserClass generateUser(String userName, String password, HashSet<Long> listedItemIDs)
+	public UserClass generateUser(String userName, String password)
 	{
 		lastUserID++;
-		UserClass current = new UserClass(lastUserID, userName, password, listedItemIDs);
+		HashSet<Long> tempSet=new HashSet<Long>();
+		tempSet.add((long) 0);
+		UserClass current = new UserClass(lastUserID, userName, password, tempSet);
 		userMap.put(lastUserID, current);
-		
-		System.out.println(userMap.toString());
-		for (Map.Entry <Long, UserClass> user: userMap.entrySet()) {
-			long res = user.getKey();
-			System.out.println(searchUserID(res).getUserName());
-
-		}
+		previousUserID=Long.valueOf(lastUserID);
 		return current;
 		
+	}
+	
+	public long getPreviousUserID()
+	{
+		return previousUserID;
 	}
 	
 	public HashMap <Long, UserClass> getUserMap(){
@@ -80,7 +117,7 @@ public class UserManager
 	{
 		try
 		{
-			File file = new File("userList.txt");
+			File file = new File("E:\\Eclipse\\0Fall151\\ws\\LabProject\\src\\users.txt");
 	        FileReader fr = new FileReader(file);
 	        BufferedReader br = new BufferedReader(fr);
 	        String line="";
@@ -101,8 +138,9 @@ public class UserManager
 	        	else
 	        	{
 	        		String[] temp=new String[4];
-	        		temp=line.split(" ");
-	        		String[] tempListedItems=temp[3].split(".");
+	        		temp=line.split("~");
+	        		
+	        		String[] tempListedItems=temp[3].split("`");
 	        		HashSet<Long> listedItems=new HashSet<Long>();
 	        		for(String tempListedItem: tempListedItems)
 	        		{
@@ -111,6 +149,7 @@ public class UserManager
 	        		
 	        		UserClass tempUser=new UserClass(Long.parseLong(temp[0]), temp[1], temp[2], listedItems);
 	            	userMap.put(Long.parseLong(temp[0]),tempUser);
+	            	System.out.println(tempUser.getUserName());
 	        	}
 	        }
 		    br.close();
@@ -134,7 +173,7 @@ public class UserManager
 	{
 		try
 		{
-			File file = new File("userList.txt");
+			File file = new File("E:\\Eclipse\\0Fall151\\ws\\LabProject\\src\\users.txt");
 	        FileWriter fw = new FileWriter(file);
 	        BufferedWriter bw = new BufferedWriter(fw);
 	        bw.write(""+lastUserID);
@@ -152,14 +191,14 @@ public class UserManager
 	            	String tempStringListedItems="";
 	            	for(Long l: tempUser.getListedItemIDs())
 	            	{
-	            		tempStringListedItems+=(l+".");
+	            		tempStringListedItems+=(l+"`");
 	            		
 	            	}
 	            	if(tempStringListedItems.length()>0)
 	            	{
 	            		tempStringListedItems=tempStringListedItems.substring(0,tempStringListedItems.length()-1);
 	            	}
-	                String line=tempStringID + " " + tempUserName + " " + tempPassword + " " + tempStringListedItems;
+	                String line=tempStringID + "~" + tempUserName + "~" + tempPassword + "~" + tempStringListedItems;
 	                bw.write(line);
 	                bw.newLine();
 	        	}
