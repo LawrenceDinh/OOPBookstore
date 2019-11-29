@@ -120,7 +120,7 @@ public class LogInFrame extends JFrame{
             	JOptionPane.showMessageDialog(null, "You have successfully logged in.", "Success!",
 						JOptionPane.INFORMATION_MESSAGE);
             	//System.out.println("success: " + found.getUserName());
-            	
+            	latch.countDown();
             	user = found;
             	setVisible(false);
             	cont = true;

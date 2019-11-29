@@ -28,7 +28,13 @@ public class Commerce {
 		
 //		System.out.println("@@@"+sessionUsers.searchUserID(2).getUserName());
 //		System.out.println("III"+sessionItems.searchItemID(4).getItemName());
-		
+		/**
+		 * 3
+1~Bob~Pass~0`1`3
+2~a~b~0
+3~alice~a~0
+4~Simon~Pass 4~0
+		 */
 		
 		CountDownLatch loginSignal = new CountDownLatch(1);
 		//Commented out for testing non-gui things; uncomment to use
@@ -47,5 +53,6 @@ public class Commerce {
 		sessionItems.writeItems();
 		sessionUsers.writeUsers();
 		System.out.println("this end");
+		System.exit(0);
 		}
 }
