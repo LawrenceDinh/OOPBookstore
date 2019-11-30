@@ -17,62 +17,38 @@ import java.util.Map;
 //TODO: write test program and test this code
 public class UserManager 
 {
-	private HashMap<Long, UserClass> userMap;
+	private HashMap<String, UserClass> userMap;
 	private boolean usersFull;
 	private long lastUserID;
 	private long previousUserID;
 	
 	public UserManager()
 	{
-		userMap=new HashMap<Long, UserClass>();
+		userMap=new HashMap<String, UserClass>();
 		usersFull=false;
 		lastUserID=0;
 		previousUserID=0;
 		readUsers();
 	}
 	
-	public UserClass searchUserID(long id)
-	{
-		return userMap.get(id);
-	}
-	
 	public UserClass searchUserName(String name)
 	{
-		Iterator<Map.Entry<Long, UserClass>> itr = userMap.entrySet().iterator();
-		while(itr.hasNext())
-    	{
-			UserClass tempUser=itr.next().getValue();
-			String checkedName=tempUser.getUserName();
-			if(name.equals(checkedName))
-			{
-				return tempUser;
-			}
-    	}
-		return null;
+		return userMap.get(name);
 	}
 	
-	
-	//use this method for account signup to prevent duplicate names
-	public boolean userNameFree(String newUserName)
+	public long searchIDbyName(String name)
 	{
-		Iterator<Map.Entry<Long, UserClass>> itr = userMap.entrySet().iterator();
-		while(itr.hasNext())
-    	{
-			UserClass tempUser=itr.next().getValue();
-			String checkedName=tempUser.getUserName();
-			if(newUserName.equals(checkedName))
-			{
-				return false;
-			}
-    	}
-		return true;
+		return searchUserName(name).getUserID();
 	}
 	
-	
+	public HashSet<Long> getUsersListedItems(String name)
+	{
+		return userMap.get(name).getListedItemIDs();
+	}
 	
 	public void addUser(UserClass aUser)
 	{
-		userMap.put(aUser.getUserID(),aUser);
+		userMap.put(aUser.getUserName(),aUser);
 	}
 	
 	public UserClass generateUser(String userName, String password)
@@ -81,10 +57,9 @@ public class UserManager
 		HashSet<Long> tempSet=new HashSet<Long>();
 		tempSet.add((long) 0);
 		UserClass current = new UserClass(lastUserID, userName, password, tempSet);
-		userMap.put(lastUserID, current);
+		userMap.put(userName, current);
 		previousUserID=Long.valueOf(lastUserID);
 		return current;
-		
 	}
 	
 	public long getPreviousUserID()
@@ -92,13 +67,25 @@ public class UserManager
 		return previousUserID;
 	}
 	
-	public HashMap <Long, UserClass> getUserMap(){
-		return userMap;
+	//Shouldn't have a getter for userMap
+//	public HashMap <Long, UserClass> getUserMap(){
+//		return userMap;
+//	}
+	
+	
+	//use this method for account signup to prevent duplicate names
+	public boolean userNameFree(String name)
+	{
+		if(userMap.containsKey(name))
+		{
+				return false;
+		}
+		return true;
 	}
 	
 	public UserClass searchCredentials(String name, String pass)
 	{
-		Iterator<Map.Entry<Long, UserClass>> itr = userMap.entrySet().iterator();
+		Iterator<Map.Entry<String, UserClass>> itr = userMap.entrySet().iterator();
 		while(itr.hasNext())
     	{
 			UserClass tempUser=itr.next().getValue();
@@ -110,14 +97,13 @@ public class UserManager
 			}
     	}
 		return null;
-		
 	}
 	
 	public void readUsers()
 	{
 		try
 		{
-			File file = new File("E:\\Eclipse\\0Fall151\\ws\\LabProject\\src\\users.txt");
+			File file = new File("userList.txt");
 	        FileReader fr = new FileReader(file);
 	        BufferedReader br = new BufferedReader(fr);
 	        String line="";
@@ -148,8 +134,7 @@ public class UserManager
 	        		}
 	        		
 	        		UserClass tempUser=new UserClass(Long.parseLong(temp[0]), temp[1], temp[2], listedItems);
-	            	userMap.put(Long.parseLong(temp[0]),tempUser);
-	            	System.out.println(tempUser.getUserName());
+	            	userMap.put(temp[1],tempUser);
 	        	}
 	        }
 		    br.close();
@@ -173,14 +158,14 @@ public class UserManager
 	{
 		try
 		{
-			File file = new File("E:\\Eclipse\\0Fall151\\ws\\LabProject\\src\\users.txt");
+			File file = new File("userList.txt");
 	        FileWriter fw = new FileWriter(file);
 	        BufferedWriter bw = new BufferedWriter(fw);
 	        bw.write(""+lastUserID);
 	        bw.newLine();
 	        while(!userMap.isEmpty())
 	        {
-	        	Iterator<Map.Entry<Long, UserClass>> itr = userMap.entrySet().iterator();
+	        	Iterator<Map.Entry<String, UserClass>> itr = userMap.entrySet().iterator();
 	        	while(itr.hasNext())
 	        	{
 	        		UserClass tempUser=itr.next().getValue();

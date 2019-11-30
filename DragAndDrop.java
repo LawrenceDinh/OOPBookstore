@@ -22,7 +22,7 @@ public class DragAndDrop extends JFrame{
 	public static JButton cancelButton;
 	public static String categories[] = { "Electric devices", "Cars", "Furnitures", "Toys", "Clothes"};
 	
-	public static ItemClass itemplug = new ItemClass( 0,"","", "", 0, false);
+	//public static ItemClass itemplug = new ItemClass( 0,"","", "", 0, false);
 	//long itemID, String itemName, String description, long sellerID, boolean deleted
 	
 	UserClass userr= new UserClass(0, "" , "" ,  new HashSet<Long>() ); 
@@ -51,7 +51,7 @@ public class DragAndDrop extends JFrame{
 		 
       	  public void actionPerformed(ActionEvent e) 
 	      {
-      		  itemplug.setItemName("ss");
+      		//  itemplug.setItemName("ss");
       		
 	        if (e.getActionCommand().equals("post"))
 	        {
@@ -59,16 +59,16 @@ public class DragAndDrop extends JFrame{
 	        
 	            String itemTitle = titleName.getText();
 	            System.out.println(itemTitle);
-	            itemplug.setItemName(itemTitle);
+	          //  itemplug.setItemName(itemTitle);
 	            
 	            String descript = descriptionField.getText();
 	            System.out.println(descript);
-	            itemplug.setDescription(itemTitle);
+	         //   itemplug.setDescription(itemTitle);
 	            
 	            
 	            String category = (String) cs.getSelectedValue();
 	            System.out.println(category);
-	            itemplug.setCategory(category);
+	         //   itemplug.setCategory(category);
 	        }
 	     
 	      }

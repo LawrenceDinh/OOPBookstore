@@ -5,7 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -14,11 +16,12 @@ import java.util.Map;
 //TODO: add comments
 //TODO: write test program and test this code
 public class ItemManager 
-{
+{	
 	private HashMap<Long, ItemClass> itemMap;
 	private boolean itemsFull;
 	private long lastItemID;
 	private long previousItemID;
+	private String[] categories;
 	
 	public ItemManager()
 	{
@@ -26,7 +29,19 @@ public class ItemManager
 		itemsFull=false;
 		lastItemID=0;
 		previousItemID=0;
+		categories=new String[]{"Automotive", "Books", "Childcare Accesories", "Clothing", "Electronics", "Entertainment Media", 
+				"Health & Beauty", "Home Improvement", "Sporting Goods", "Toys", "Other"};
 		readItems();
+	}
+	
+	public String[] getCategories()
+	{
+		return categories;
+	}
+	
+	public String getCategory(int index)
+	{
+		return categories[index];
 	}
 	
 	public ItemClass searchItemID(long id)
@@ -34,10 +49,20 @@ public class ItemManager
 		return itemMap.get(id);
 	}
 	
-	public HashMap<Long, ItemClass> searchItemName(String name)
+	public ArrayList<ItemClass> searchItemIDs(HashSet<Long> ids)
+	{
+		ArrayList<ItemClass> matches=new ArrayList<>();
+		for(long id: ids)
+		{
+			matches.add(itemMap.get(id));
+		}
+		return matches;
+	}
+	
+	public ArrayList<ItemClass> searchItemName(String name)
 	{
 		Iterator<Map.Entry<Long, ItemClass>> itr = itemMap.entrySet().iterator();
-		HashMap<Long, ItemClass> matches=new HashMap<Long, ItemClass>();
+		ArrayList<ItemClass> matches=new ArrayList<ItemClass>();
 		while(itr.hasNext())
     	{
 			
@@ -45,33 +70,34 @@ public class ItemManager
 			String checkedName=tempItem.getItemName();
 			if(name.toLowerCase().equals(checkedName.toLowerCase()))
 			{
-				matches.put(tempItem.getItemID(), tempItem);
+				matches.add(tempItem);
 			}
     	}
 		return matches;
 	}
 	
-	public HashMap<Long, ItemClass> searchItemCategory(String category)
+	public ArrayList<ItemClass> searchItemCategory(int categoryNum)
 	{
 		Iterator<Map.Entry<Long, ItemClass>> itr = itemMap.entrySet().iterator();
-		HashMap<Long, ItemClass> matches=new HashMap<Long, ItemClass>();
+		ArrayList<ItemClass> matches=new ArrayList<ItemClass>();
 		while(itr.hasNext())
     	{
 			
 			ItemClass tempItem=itr.next().getValue();
-			String checkedName=tempItem.getCategory();
-			if(category.toLowerCase().equals(checkedName.toLowerCase()))
+			int checkedCategoryNumber=tempItem.getCategoryNumber();
+			if(checkedCategoryNumber==categoryNum)
 			{
-				matches.put(tempItem.getItemID(), tempItem);
+				matches.add(tempItem);
 			}
     	}
 		return matches;
 	}
 	
-	public ItemClass generateItem(String itemName, String category, String description, long sellerID)
+	
+	public ItemClass generateItem(String itemName, int categoryNumber, String description, String sellerName)
 	{
 		lastItemID++;
-		ItemClass current=new ItemClass(lastItemID, itemName, category, description, sellerID, false);
+		ItemClass current=new ItemClass(lastItemID, itemName, categoryNumber, description, sellerName);
 		itemMap.put(lastItemID, current);
 		previousItemID=Long.valueOf(lastItemID);
 		return current;
@@ -84,9 +110,7 @@ public class ItemManager
 
 	public void deleteItem(Long aItemID)
 	{
-		ItemClass tempItem=itemMap.get(aItemID);
-		tempItem.setDeletedStatus(true);
-		itemMap.put(aItemID, tempItem);
+		itemMap.remove(aItemID);
 	}
 	
 	public void readItems()
@@ -113,14 +137,9 @@ public class ItemManager
 	        	}
 	        	else
 	        	{
-	        		String[] temp=new String[6];
+	        		String[] temp=new String[5];
 	        		temp=line.split("~");
-	        		boolean deletedStatus=false;
-	        		if(temp[5]=="1")
-	        		{
-	        			deletedStatus=true;
-	        		}
-	        		ItemClass tempUser=new ItemClass(Long.parseLong(temp[0]), temp[1], temp[2], temp[3], Long.parseLong(temp[4]), deletedStatus);
+	        		ItemClass tempUser=new ItemClass(Long.parseLong(temp[0]), temp[1], Integer.parseInt(temp[2]), temp[3], temp[4]);
 	            	itemMap.put(Long.parseLong(temp[0]),tempUser);
 	        	}
 	        }
@@ -157,16 +176,11 @@ public class ItemManager
 	        		itr.remove();
 	        		String tempStringID=""+tempItem.getItemID();
 	        		String tempItemName=tempItem.getItemName();
-	        		String tempCategory=tempItem.getCategory();
+	        		String tempCategory=""+tempItem.getCategoryNumber();
 	        		String tempDescription=tempItem.getDescription();
-	            	String tempSellerID=""+tempItem.getSellerID();
-	            	String deletionStatusString="0";
-	            	if(tempItem.getDeletedStatus())
-	            	{
-	            		deletionStatusString="1";
-	            	}
+	            	String tempSellerName=""+tempItem.getSellerName();
 
-	                String line=tempStringID + "~" + tempItemName + "~" + tempCategory+ "~" + tempDescription + "~" + tempSellerID + "~" + deletionStatusString;
+	                String line=tempStringID + "~" + tempItemName + "~" + tempCategory+ "~" + tempDescription + "~" + tempSellerName;
 	                bw.write(line);
 	                bw.newLine();
 	        	}
