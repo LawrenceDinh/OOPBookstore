@@ -53,6 +53,8 @@ public class Commerce {
 		sessionItems.writeItems();
 		sessionUsers.writeUsers();
 		System.out.println("this end");
+		driver d = new driver();
+		d.runDashboard();
 		System.exit(0);
 		}
 }
