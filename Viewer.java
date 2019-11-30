@@ -4,11 +4,11 @@ import java.util.concurrent.CountDownLatch;
 
 public class Viewer {
 
-	UserManager users;
-	JFrame LogInFrame;
-	JFrame SignUpFrame;
-	CountDownLatch latch;
-	UserClass user = null;
+	private UserManager users;
+	private JFrame LogInFrame;
+	private JFrame SignUpFrame;
+	private CountDownLatch latch;
+	private UserClass user = null;
 
 	public Viewer(UserManager userData, CountDownLatch signal) {
 		users = userData;
