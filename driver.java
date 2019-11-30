@@ -2,10 +2,12 @@ import java.util.concurrent.CountDownLatch;
 
 public class driver {
 
-	public driver() {
-		
+	private UserClass user;
+	public driver(UserClass currentUser) {
+		user = currentUser;
 	}
 	public void runDashboard() throws InterruptedException{
+		System.out.println("logged: " + user.getUserName());
 		CountDownLatch loginSignal = new CountDownLatch(1);
 		int choice = -1;
 		choiceSelected c = new choiceSelected(-1);

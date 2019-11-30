@@ -42,19 +42,21 @@ public class Commerce {
 		view.display();
 		//loginSignal.countDown();
 		//loginSignal.await();
+		UserClass test = null;
 		if (view.returnUser() != null) { //retrieving user instance from login
-		UserClass test = view.returnUser();
+		test = view.returnUser();
 		System.out.println("passed: " + test.getUserName());
 		}
 
 		
-		System.out.println(sessionUsers.getUserMap().toString());
+		//System.out.println(sessionUsers.getUserMap().toString());
 		//when ready to end the session
+
+		System.out.println("this end");
+		driver d = new driver(test); //runs the dashboard and passes current instance of user
+		d.runDashboard();
 		sessionItems.writeItems();
 		sessionUsers.writeUsers();
-		System.out.println("this end");
-		driver d = new driver();
-		d.runDashboard();
 		System.exit(0);
 		}
 }
