@@ -119,6 +119,7 @@ public class SignUpFrame extends JFrame{
 						JOptionPane.ERROR_MESSAGE);
             }
             else {
+            	System.out.println("success");
             	UserClass found = userData.generateUser(usernameEntered, passwordEntered);
             	JOptionPane.showMessageDialog(null, "You have successfully created an account.\nPlease log in.", "Success!",
 						JOptionPane.INFORMATION_MESSAGE);

@@ -103,7 +103,7 @@ public class UserManager
 	{
 		try
 		{
-			File file = new File("userList.txt");
+			File file = new File("E:\\Eclipse\\0Fall151\\ws\\LabProject\\src\\users.txt");
 	        FileReader fr = new FileReader(file);
 	        BufferedReader br = new BufferedReader(fr);
 	        String line="";
@@ -158,7 +158,7 @@ public class UserManager
 	{
 		try
 		{
-			File file = new File("userList.txt");
+			File file = new File("E:\\Eclipse\\0Fall151\\ws\\LabProject\\src\\users.txt");
 	        FileWriter fw = new FileWriter(file);
 	        BufferedWriter bw = new BufferedWriter(fw);
 	        bw.write(""+lastUserID);

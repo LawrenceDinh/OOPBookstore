@@ -56,6 +56,8 @@ public class Commerce {
 		driver d = new driver(); //runs the dashboard and passes current instance of user
 		d.runDashboard();
 		System.out.println(d.getChoice());
+		
+		
 		sessionItems.writeItems();
 		sessionUsers.writeUsers();
 		System.exit(0);

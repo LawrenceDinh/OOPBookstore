@@ -19,7 +19,7 @@ public class driver {
 		System.out.println("exit");	
 		//System.out.println(n);
 		choice = c.getChoice();
-		System.exit(1);
+		//System.exit(1);
 	}
 	public int getChoice() {
 		return choice;
