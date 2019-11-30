@@ -70,6 +70,7 @@ public int getChoice() {
   public void run() throws InterruptedException {
 	  
       JFrame frame = new JFrame("Dashboard User Interface");
+      frame.setTitle("Dashboard");
       frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
       frame.setContentPane(new main(latch, option, intInput));
       frame.setPreferredSize(new Dimension(500, 300));
