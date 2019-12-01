@@ -1,6 +1,3 @@
-
-
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -12,9 +9,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
-import editGUI.ItemClass;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -34,7 +28,8 @@ public class shownItem extends JFrame{
 	public JButton closeButton;
 	private JFrame frame;
 	private JLabel category;
-	private ItemClass itemplug;
+	
+	private ItemClass itemplug = new ItemClass(0,"",0,"","");
 	//long itemID, String itemName, int categoryNumber, String description, String sellerID
 	
 	//public UserClass usr= new UserClass(0, "" , "" ,  new HashSet<Long>() ); 
@@ -46,6 +41,35 @@ public class shownItem extends JFrame{
 	{
 		itemplug = itemOBJ;
     }
+  
+	/*private static BufferedImage resize(BufferedImage img, int height, int width) 
+	{
+        Image tmp = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        BufferedImage resized = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = resized.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+        return resized;
+    }
+  */
+	
+  /*public static ImageIcon ResizeImage(String ImagePath)
+  {
+      ImageIcon MyImage = new ImageIcon(ImagePath);
+      Image img = MyImage.getImage();
+      Image newImg = img.getScaledInstance(500, 350, Image.SCALE_SMOOTH);
+      ImageIcon image = new ImageIcon(newImg);
+      return image;
+  }*/
+  
+  /*public static JLabel timeLabel()
+  {
+	  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+	    LocalDateTime now = LocalDateTime.now();
+	    
+		 JLabel timelbl = new JLabel(dtf.format(now));         
+		 return timelbl;
+  }*/
   
   public void GridLayOut() 
   {
@@ -79,7 +103,7 @@ public class shownItem extends JFrame{
 	    titleName = new JLabel(itemplug.getItemName());
 	    titleName.setFont(titleName.getFont().deriveFont(18f));
 	    //Adjust font size
-	   // guiId = new JLabel(itemplug.getSellerName());
+	    guiId = new JLabel(itemplug.getSellerName());
 	    
 	    descriptionField = new JTextArea(10, FIELD_WIDTH);
 	    descriptionField.setText(itemplug.getDescription());
@@ -142,7 +166,7 @@ public class shownItem extends JFrame{
 	    final int FIELD_WIDTH = 40;
 	    
 	    String categor = "" ;
-	    if(((ItemClass) itemplug).getCategoryNumber()==0)
+	    if(itemplug.getCategoryNumber()==0)
 	    	categor = "Automotive";	
 	    else if(itemplug.getCategoryNumber()==1)
 	    	categor = "Books";
