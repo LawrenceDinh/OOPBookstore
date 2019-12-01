@@ -10,6 +10,7 @@ import java.util.concurrent.CountDownLatch;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -25,6 +26,8 @@ public class DashboardFrame extends JPanel
     private int option; 
     int[] selected = null;
     private DashboardChoiceSelected intInput;
+    private UserClass userName;
+
 	 //public static JTextField searchWords;
 	 //public static HashSet<Long> list = new HashSet<Long>(); 
 	 
@@ -33,17 +36,21 @@ public class DashboardFrame extends JPanel
     
 
 
-  public DashboardFrame(CountDownLatch signal, int select, DashboardChoiceSelected c) {
-
+  public DashboardFrame(CountDownLatch signal, int select, DashboardChoiceSelected c, UserClass user) {
+	  userName = user;
 	  intInput = c;
 	  latch = signal;
 	  option = select;
+	    String name = userName.getUserName();
+	    JLabel loggedUser = new JLabel("Logged in as: " + name);
+	    loggedUser.setFont(new Font("Arial", Font.BOLD, 14));
 		DefaultListModel<String> options = new DefaultListModel<>();
 	    options.addElement("Post an Item");
 	    options.addElement("Search for Item");
 	    options.addElement("View your posted items");
 	    options.addElement("Change Password");
 	    options.addElement("Exit Program"); //optional
+
         itemlist = new JList<>(options);  
 	  
       setLayout(new BorderLayout());
@@ -59,6 +66,7 @@ public class DashboardFrame extends JPanel
       JScrollPane pane = new JScrollPane(itemlist);
       pane.setPreferredSize(new Dimension(500, 200));
       add(pane, BorderLayout.NORTH);
+      add(loggedUser, BorderLayout.WEST);
       add(button, BorderLayout.SOUTH);
       //add(post, BorderLayout.WEST);
       //add(null, BorderLayout.EAST);
@@ -73,7 +81,7 @@ public int getChoice() {
       JFrame frame = new JFrame("Dashboard User Interface");
       frame.setTitle("Dashboard");
       frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-      frame.setContentPane(new DashboardFrame(latch, option, intInput));
+      frame.setContentPane(new DashboardFrame(latch, option, intInput, userName));
       frame.setPreferredSize(new Dimension(500, 300));
       frame.pack();
       frame.setVisible(true);

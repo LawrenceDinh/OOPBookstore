@@ -18,7 +18,7 @@ public class DashboardDriver {
 		CountDownLatch loginSignal = new CountDownLatch(1);
 		int choice = -1;
 		 c = new DashboardChoiceSelected(-1);
-		DashboardFrame m = new DashboardFrame(loginSignal, choice, c);
+		DashboardFrame m = new DashboardFrame(loginSignal, choice, c, thisUser);
 		
 		m.run();
 	
