@@ -28,42 +28,14 @@ public class Commerce {
 		//when ready to end the session
 
 
-		DashboardDriver d = new DashboardDriver(); //runs the dashboard and passes current instance of user
+		DashboardDriver d = new DashboardDriver(sessionItems, sessionUsers); //runs the dashboard and passes current instance of user
 		d.runDashboard();
+		d.stepForward();
 		
 		
 		//DragAndDrop ditem = new DragAndDrop(sessionItems, view.returnUser());
 		//ditem.dragAndDropDisplay();
 		System.out.println("runs");
-		SearchListingViewer slv = new SearchListingViewer();
-		UserListingViewer ulv = new UserListingViewer();
-		
-		switch(d.getChoice()) {
-		case 0:
-			System.out.println("Post item UI");
-			break;
-		case 1:
-			System.out.println("Search item UI");
-			//CountDownLatch n = new CountDownLatch(1);
-			slv.display();
-			//n.await();
-			break;
-		case 2:
-			System.out.println("Change password UI");
-			break;
-		case 3:
-			System.out.println("Program terminating");
-			System.exit(1);
-			break;
-		}
-
-		
-	//	SearchListingController slc = new SearchListingController(slv, sessionItems, sessionUsers);
-	//	UserListingController ulc = new UserListingController(ulv, sessionItems, sessionUsers, "Sol Badguy");
-	//	CountDownLatch n = new CountDownLatch(1);
-	//	slc.start();
-	//	ulc.start();
-		
 		
 		sessionItems.writeItems();
 		sessionUsers.writeUsers();
