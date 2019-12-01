@@ -91,7 +91,7 @@ class changePassGUI extends JFrame implements ActionListener {
         String s = e.getActionCommand(); 
         if (s.equals("Confirm Changes")) { 
             // set the text of the label to the text of the field 
-        	
+        	if(!stringEmpty(t.getText())) {
             l.setText(t.getText()); 
             thisUser.setPassword(t.getText());
             System.out.println("New pass: " + t.getText());
@@ -100,6 +100,18 @@ class changePassGUI extends JFrame implements ActionListener {
 			  f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 			  f.setVisible(false);
 			  f.dispose();
+        	}
+        	else {
+            	JOptionPane.showMessageDialog(null, "Please enter a new password.", "Error!",
+						JOptionPane.ERROR_MESSAGE);
+
+		  }
         } 
     } 
+	public boolean stringEmpty(String s) {
+		if (s.trim().isEmpty() || s == null) {
+			return true;
+		}
+		return false;
+	}
 } 
