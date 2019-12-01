@@ -12,9 +12,9 @@ public class editGUI {
 	CountDownLatch n = new CountDownLatch(1);
 	editItemViewer editGUI = new editItemViewer(item, n);
 	n.await();
-	System.out.println("EXIT");
 	editGUI.setVisible(false);
 	System.out.println("main changed: " + item.getItemName());
+	System.out.println("description changed: " + item.getDescription());
 	System.exit(1); //TO REMOVE WHEN IMPLEMENTING
 
 	}

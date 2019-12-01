@@ -1,36 +1,43 @@
-package changePassword;
+
+
 
 import javax.swing.*;
+
 
 import java.awt.Font;
 import java.awt.GridLayout;
 //Java program to create a blank text  
 //field of definite number of columns. 
-import java.awt.event.*; 
+import java.awt.event.*;
+import java.util.concurrent.CountDownLatch;
+
 import javax.swing.*; 
-class changePassGUI extends JFrame implements ActionListener { 
+public class changePassGUI extends JFrame implements ActionListener { 
     // JTextField 
-    static JTextField t; 
+    private static JTextField t; 
   
-    // JFrame 
-    static JFrame f; 
+    // JFrame s
+    private static JFrame f; 
   
     // JButton 
-    static JButton b; 
-    static JButton exit; 
+    private static JButton b; 
+    private static JButton exit; 
     // label to display text 
-    static JLabel l, title; 
+    private static JLabel l, title; 
   
     private UserClass thisUser;
+	private CountDownLatch latch;
     // default constructor 
-    changePassGUI(UserClass user) 
+    public changePassGUI(UserClass thisUser2, CountDownLatch cd) 
     { 
-    	thisUser = user;
+    	latch = cd;
+    	thisUser = thisUser2;
     } 
   
     // main class 
     public void changePasswordUI()
-    { 
+    {
+
         // create a new frame to store text field and button 
         f = new JFrame("Change User's Password"); 
   
@@ -44,7 +51,7 @@ class changePassGUI extends JFrame implements ActionListener {
         exit = new JButton("Close Window"); 
         JLabel n = new JLabel("");
         // create a object of the text class 
-        changePassGUI te = new changePassGUI(thisUser); 
+        changePassGUI te = new changePassGUI(thisUser, latch); 
         
 
         
@@ -79,6 +86,7 @@ class changePassGUI extends JFrame implements ActionListener {
 				  f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 				  f.setVisible(false);
 				  f.dispose();
+				  latch.countDown();
 			  }
 			  
 			});
@@ -97,9 +105,11 @@ class changePassGUI extends JFrame implements ActionListener {
             System.out.println("New pass: " + t.getText());
             // set the text of field to blank 
             t.setText("  "); 
-			  f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            //System.out.println(thisUser.getPassword());
+			  f.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 			  f.setVisible(false);
 			  f.dispose();
+			  latch.countDown();
         	}
         	else {
             	JOptionPane.showMessageDialog(null, "Please enter a new password.", "Error!",

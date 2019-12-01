@@ -61,6 +61,12 @@ public class DashboardDriver {
 			break;
 		case 3:
 			System.out.println("Change password UI");
+			CountDownLatch l = new CountDownLatch(1);
+			changePassGUI c = new changePassGUI(thisUser, l);
+
+			c.changePasswordUI();
+			l.await();
+			System.out.println("from switch: " + thisUser.getPassword());
 			break;
 		case 4:
 			System.out.println("Program terminating");
