@@ -8,9 +8,11 @@ public class DashboardDriver {
 	DashboardChoiceSelected c;
 	ItemManager items;
 	UserManager users;
-	public DashboardDriver(ItemManager itemInstance, UserManager userInstance) {
+	UserClass thisUser;
+	public DashboardDriver(ItemManager itemInstance, UserManager userInstance, UserClass currentUser) {
 		items = itemInstance;
 		users = userInstance;
+		thisUser = currentUser;
 	}
 	public void runDashboard() throws InterruptedException{
 		CountDownLatch loginSignal = new CountDownLatch(1);
@@ -25,22 +27,6 @@ public class DashboardDriver {
 	
 		//System.out.println(n);
 		choice = c.getChoice();
-		/**
-		switch(choice) {
-		case 1:
-			System.out.println("Post item UI");
-			break;
-		case 2:
-			System.out.println("Search item UI");
-			break;
-		case 3:
-			System.out.println("Change password UI");
-			break;
-		case 4:
-			System.out.println("Program terminating");
-			System.exit(1);
-			break;
-		}**/
 		
 	}
 	public int getChoice() {
@@ -48,7 +34,11 @@ public class DashboardDriver {
 		return choice;
 	}
 	
+	public UserClass getCurrentUser() {
+		return thisUser;
+	}
 	public void stepForward() {
+		System.out.println("logged in as: " + getCurrentUser().getUserName());
 		switch(c.getChoice()) {
 		case 0:
 			System.out.println("Post item UI");

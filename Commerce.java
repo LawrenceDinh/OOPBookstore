@@ -28,7 +28,7 @@ public class Commerce {
 		//when ready to end the session
 
 
-		DashboardDriver d = new DashboardDriver(sessionItems, sessionUsers); //runs the dashboard and passes current instance of user
+		DashboardDriver d = new DashboardDriver(sessionItems, sessionUsers, test); //runs the dashboard and passes current instance of user
 		d.runDashboard();
 		d.stepForward();
 		
