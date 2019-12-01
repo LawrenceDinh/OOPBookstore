@@ -30,7 +30,6 @@ public class Commerce {
 
 		DashboardDriver d = new DashboardDriver(sessionItems, sessionUsers, test); //runs the dashboard and passes current instance of user
 		d.runDashboard();
-		d.stepForward();
 		
 		
 		//DragAndDrop ditem = new DragAndDrop(sessionItems, view.returnUser());

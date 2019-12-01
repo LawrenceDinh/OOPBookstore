@@ -5,7 +5,7 @@
 4~May~Pass 4~0`4
 8~ae~e~0
 9~t~q~0
-10~Bob~Pass2~0
+10~Bob~p~0
 7~e~q~0
 2~Ky Kiske~Pass2~0`2
 3~Nanase~Pass3~0`3

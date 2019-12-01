@@ -22,12 +22,11 @@ public class DashboardDriver {
 		
 		m.run();
 	
-
-	
 		//System.out.println("success: " + (c.getChoice()));
 	
 		//System.out.println(n);
 		choice = c.getChoice();
+		stepForward();
 		
 	}
 	public int getChoice() {
@@ -67,10 +66,12 @@ public class DashboardDriver {
 			c.changePasswordUI();
 			l.await();
 			System.out.println("from switch: " + thisUser.getPassword());
+			
+			runDashboard();
 			break;
 		case 4:
 			System.out.println("Program terminating");
-			System.exit(0);
+			break;
 		}
 	}
 }
