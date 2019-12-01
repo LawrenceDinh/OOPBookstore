@@ -14,6 +14,7 @@ public class editGUI {
 	n.await();
 	System.out.println("EXIT");
 	editGUI.setVisible(false);
+	System.out.println("main changed: " + item.getItemName());
 	System.exit(1); //TO REMOVE WHEN IMPLEMENTING
 
 	}

@@ -111,16 +111,18 @@ public class editItemViewer extends JDialog{
 					  else {
 						  if (!stringEmpty(getItemName())&& (!stringEmpty(getDescription()))){
 							  System.out.println("this name: " + getItemName());
+							  item.setItemName(getItemName());
 							  System.out.println("this desc: " + getDescription());
+							  item.setDescription(getDescription());
 						  }
 						  else if (!stringEmpty(getDescription())){
 							  System.out.println("this desc: " + getDescription());
-							  n.countDown();
+							  item.setDescription(getDescription());
 						  }
-
 						  
 						  else if (!stringEmpty(getItemName())){
 							  System.out.println("this name: " + getItemName());
+							  item.setItemName(getItemName());
 						  }
 						  n.countDown();
 					  }
