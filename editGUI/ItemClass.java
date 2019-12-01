@@ -1,21 +1,19 @@
-package editGUI;
 public class ItemClass 
 {
 	private final long itemID;
 	private String itemName;
-	private String category;
+	private int categoryNumber;
 	private String description;
-	private final long sellerID;
-	private boolean deletedBool;
+	private final String sellerName;
 	
 	
-	public ItemClass(long itemID, String itemName, String category, String description, long sellerID, boolean deleted)
+	public ItemClass(long itemID, String itemName, int categoryNumber, String description, String sellerName)
 	{
 		this.itemID=itemID;
 		this.itemName=itemName;
-		this.category = category;
+		this.categoryNumber = categoryNumber;
 		this.description=description;
-		this.sellerID=sellerID;
+		this.sellerName=sellerName;
 	}
 	
 	//getters and setters
@@ -36,14 +34,14 @@ public class ItemClass
 		itemName=newName;
 	}
 	
-	public String getCategory()
+	public int getCategoryNumber()
 	{
-		return category;
+		return categoryNumber;
 	}
 	
-	public void setCategory(String category)
+	public void setCategory(int categoryNumber)
 	{
-		this.category=category;
+		this.categoryNumber=categoryNumber;
 	}
 	
 	public String getDescription()
@@ -56,26 +54,10 @@ public class ItemClass
 		description=newDescription;
 	}
 	
-	public Long getSellerID()
+	public String getSellerName()
 	{
-		return sellerID;
+		return sellerName;
 	}
-	
-	public boolean getDeletedStatus()
-	{
-		return deletedBool;
-	}
-	
-	public void setDeletedStatus(boolean aDeletionStatus)
-	{
-		deletedBool=aDeletionStatus;
-	}
-	
-	
-	
-	
-	
-	
 	
 }
 
