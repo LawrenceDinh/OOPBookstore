@@ -49,12 +49,16 @@ public class DashboardDriver {
 			//n.await();
 			break;
 		case 2:
-			System.out.println("Change password UI");
+			System.out.println("View Own Items UI");
+			//CountDownLatch n = new CountDownLatch(1);
+			//n.await();
 			break;
 		case 3:
-			System.out.println("Program terminating");
-			System.exit(1);
+			System.out.println("Change password UI");
 			break;
+		case 4:
+			System.out.println("Program terminating");
+			System.exit(0);
 		}
 	}
 }
