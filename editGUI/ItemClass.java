@@ -1,3 +1,5 @@
+package editGUI;
+
 public class ItemClass 
 {
 	private final long itemID;
