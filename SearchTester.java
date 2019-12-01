@@ -1,6 +1,5 @@
 
 public class SearchTester {
-	/**
 	public static void main(String args[])
 	{
 		
@@ -25,5 +24,5 @@ public class SearchTester {
 		slc.start();
 		ulc.start();
 	}
-**/
+
 }

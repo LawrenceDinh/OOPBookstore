@@ -37,7 +37,8 @@ public class DashboardDriver {
 	public UserClass getCurrentUser() {
 		return thisUser;
 	}
-	public void stepForward() {
+	
+	public void stepForward() throws InterruptedException {
 		System.out.println("logged in as: " + getCurrentUser().getUserName());
 		switch(c.getChoice()) {
 		case 0:
@@ -49,8 +50,12 @@ public class DashboardDriver {
 			//n.await();
 			break;
 		case 2:
-			System.out.println("View Own Items UI");
-			//CountDownLatch n = new CountDownLatch(1);
+			//System.out.println("View Own Items UI");
+			UserListingViewer ulv = new UserListingViewer();
+			UserListingController ulc = new UserListingController(ulv, items, users, getCurrentUser().getUserName());
+			CountDownLatch n = new CountDownLatch(1);
+			ulc.start();
+
 			//n.await();
 			break;
 		case 3:

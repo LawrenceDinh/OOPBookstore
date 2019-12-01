@@ -95,8 +95,8 @@ public class editItem extends JDialog{
 	//swap the cards
 	public String getDescription(){
 		itemDesc = display.getText();
-		if (!itemDesc.trim().isEmpty()) {
-			System.out.println("none");
+		if (itemDesc.trim().isEmpty()) {
+			System.out.println("anone");
 		}
 		return itemDesc;
 	}
@@ -104,7 +104,7 @@ public class editItem extends JDialog{
 	public String getTitle() {
 		itemTitle = item_name.getText();
 		if (itemTitle.trim().isEmpty()) {
-			System.out.println("none");
+			System.out.println("bnone");
 		}
 		return itemTitle;
 	}
