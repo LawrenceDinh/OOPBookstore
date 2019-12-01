@@ -5,6 +5,7 @@ import java.awt.Dialog;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -86,9 +87,10 @@ public class editItemViewer extends JDialog{
 				  public void actionPerformed(ActionEvent e)
 				  {
 				    // display/center the jdialog when the button is pressed
-					  System.out.println("WWW");
+					  setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 					  setVisible(false);
 					  dispose();
+					  n.countDown();
 				  }
 				  
 				});
@@ -98,10 +100,28 @@ public class editItemViewer extends JDialog{
 				  public void actionPerformed(ActionEvent e)
 				  {
 				    // display/center the jdialog when the button is pressed
-					  System.out.println("GET");
+					  System.out.println("CONFIRMED CHANGES");
 					  getDescription();
 					  getItemName();
-					  if (!stringEmpty(getDescription())|| !stringEmpty(getItemName())) {
+					  if (stringEmpty(getDescription())&& stringEmpty(getItemName())) {
+			            	JOptionPane.showMessageDialog(null, "Please modify atleast one field.", "Error!",
+									JOptionPane.ERROR_MESSAGE);
+			
+					  }
+					  else {
+						  if (!stringEmpty(getItemName())&& (!stringEmpty(getDescription()))){
+							  System.out.println("this name: " + getItemName());
+							  System.out.println("this desc: " + getDescription());
+						  }
+						  else if (!stringEmpty(getDescription())){
+							  System.out.println("this desc: " + getDescription());
+							  n.countDown();
+						  }
+
+						  
+						  else if (!stringEmpty(getItemName())){
+							  System.out.println("this name: " + getItemName());
+						  }
 						  n.countDown();
 					  }
 					  
@@ -123,7 +143,6 @@ public class editItemViewer extends JDialog{
 	
 	public boolean stringEmpty(String s) {
 		if (s.trim().isEmpty() || s == null) {
-			System.out.println("anone");
 			return true;
 		}
 		return false;
@@ -132,7 +151,7 @@ public class editItemViewer extends JDialog{
 	public String getDescription(){
 		itemDesc = display.getText();
 		if (!stringEmpty(itemDesc)) {
-			System.out.println(itemDesc);
+			
 		}
 		return itemDesc;
 	}
@@ -141,7 +160,7 @@ public class editItemViewer extends JDialog{
 	public String getItemName() {
 		itemTitle = item_name.getText();
 		if (!stringEmpty(itemTitle)) {
-			System.out.println(itemTitle);
+			
 		}
 		return itemTitle;
 	}

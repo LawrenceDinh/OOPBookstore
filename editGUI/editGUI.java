@@ -2,6 +2,8 @@ package editGUI;
 
 import java.util.concurrent.CountDownLatch;
 
+import javax.swing.WindowConstants;
+
 public class editGUI {
 
 	public static void main(String []args) throws InterruptedException {
@@ -10,6 +12,9 @@ public class editGUI {
 	CountDownLatch n = new CountDownLatch(1);
 	editItemViewer editGUI = new editItemViewer(item, n);
 	n.await();
+	System.out.println("EXIT");
 	editGUI.setVisible(false);
+	System.exit(1); //TO REMOVE WHEN IMPLEMENTING
+
 	}
 }
