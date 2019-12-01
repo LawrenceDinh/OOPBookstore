@@ -19,6 +19,7 @@ public class DashboardDriver {
 		int choice = -1;
 		 c = new DashboardChoiceSelected(-1);
 		DashboardFrame m = new DashboardFrame(loginSignal, choice, c);
+		
 		m.run();
 	
 

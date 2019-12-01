@@ -41,11 +41,11 @@ public class editItemViewer extends JDialog{
 	{
 		n = latch;
 		item = itemSearched;
-		title = new JLabel("Edit " + itemSearched.getItemName() + "'s Title");
+		title = new JLabel("Enter " + itemSearched.getItemName() + "'s New Title ");
 		title.setHorizontalAlignment(JLabel.CENTER);
 
 		
-		description = new JLabel("Edit " + itemSearched.getItemName() + "'s Description");
+		description = new JLabel("Enter " + itemSearched.getItemName() + "'s New Description");
 		description.setHorizontalAlignment(JLabel.CENTER);
 	
 		

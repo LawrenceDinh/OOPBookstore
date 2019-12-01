@@ -11,6 +11,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -111,21 +112,29 @@ public int getChoice() {
     	int n = search();
 		//c.setChoice(n);
 		//System.out.println("yay: " + n );
+    	if (n == -1) {
+        	JOptionPane.showMessageDialog(null, "Please select atleast one field.", "Error!",
+					JOptionPane.ERROR_MESSAGE);
+    	}
+    	else {
 		temp.setChoice(n);
 		latch.countDown();
-
+    	}
           }
       }
   
   public int search(){
+	  if(!itemlist.isSelectionEmpty()){
+		  
+
 	  selected = itemlist.getSelectedIndices();
  
           int choice = selected[0];
           setOption(choice);
 
           return choice;
-          
-  			
+	  }
+      return -1;
   }
 
 
