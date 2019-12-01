@@ -117,7 +117,7 @@ public class ItemManager
 	{
 		try
 		{
-			File file = new File("itemList.txt");
+			File file = new File("E:\\Eclipse\\0Fall151\\ws\\LabProject\\src\\itemList.txt");
 	        FileReader fr = new FileReader(file);
 	        BufferedReader br = new BufferedReader(fr);
 	        String line="";
@@ -162,7 +162,7 @@ public class ItemManager
 	{
 		try
 		{
-			File file = new File("itemList.txt");
+			File file = new File("E:\\Eclipse\\0Fall151\\ws\\LabProject\\src\\itemList.txt");
 	        FileWriter fw = new FileWriter(file);
 	        BufferedWriter bw = new BufferedWriter(fw);
 	        bw.write(""+lastItemID);

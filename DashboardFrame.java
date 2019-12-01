@@ -16,14 +16,14 @@ import javax.swing.JScrollPane;
 
 import javax.swing.ListSelectionModel;
 
-public class main extends JPanel
+public class DashboardFrame extends JPanel
 {
     private JList<String> itemlist;
 
     private CountDownLatch latch;
     private int option; 
     int[] selected = null;
-    private choiceSelected intInput;
+    private DashboardChoiceSelected intInput;
 	 //public static JTextField searchWords;
 	 //public static HashSet<Long> list = new HashSet<Long>(); 
 	 
@@ -32,7 +32,7 @@ public class main extends JPanel
     
 
 
-  public main(CountDownLatch signal, int select, choiceSelected c) {
+  public DashboardFrame(CountDownLatch signal, int select, DashboardChoiceSelected c) {
 
 	  intInput = c;
 	  latch = signal;
@@ -40,9 +40,9 @@ public class main extends JPanel
 		DefaultListModel<String> options = new DefaultListModel<>();
 	    options.addElement("Post an Item");
 	    options.addElement("Search for Item");
-	    options.addElement("Search for User");
-	    options.addElement("Message User");
-	    options.addElement("Display Messages"); //optional
+	    options.addElement("View your posted items");
+	    options.addElement("Change Password");
+	    options.addElement("Exit Program"); //optional
         itemlist = new JList<>(options);  
 	  
       setLayout(new BorderLayout());
@@ -72,7 +72,7 @@ public int getChoice() {
       JFrame frame = new JFrame("Dashboard User Interface");
       frame.setTitle("Dashboard");
       frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-      frame.setContentPane(new main(latch, option, intInput));
+      frame.setContentPane(new DashboardFrame(latch, option, intInput));
       frame.setPreferredSize(new Dimension(500, 300));
       frame.pack();
       frame.setVisible(true);
@@ -100,8 +100,8 @@ public int getChoice() {
   // An inner class to respond to clicks on the Print button
  class PrintListener implements ActionListener{
 	 
-	 choiceSelected temp;
-	 PrintListener(choiceSelected c){
+	 DashboardChoiceSelected temp;
+	 PrintListener(DashboardChoiceSelected c){
 		 c = intInput;
 		 temp = c;
 	 }

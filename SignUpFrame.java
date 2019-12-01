@@ -82,11 +82,8 @@ public class SignUpFrame extends JFrame{
     public class ClickListener1 implements ActionListener {
  
         public void actionPerformed(ActionEvent event) {
-        	cont = false;
-        	dispose();
-        	((LogInFrame) frame).setBool(true);
-        	setVisible(false);
-        	latch.countDown();
+        	System.out.println("Terminating program");
+        	System.exit(1);
         }
     }
  
@@ -113,11 +110,12 @@ public class SignUpFrame extends JFrame{
 						JOptionPane.ERROR_MESSAGE);
             }
             
-            else if(userData.searchCredentials(usernameEntered, passwordEntered)!=null) {
+            else if(userData.userNameFree(usernameEntered)==false) {
 				System.out.println("already exists");
-            	JOptionPane.showMessageDialog(null, "This account already exists!\nPlease use the Login page to sign in.", "Error!",
+            	JOptionPane.showMessageDialog(null, "This account name already exists!\nPlease use the Login page to sign in.", "Error!",
 						JOptionPane.ERROR_MESSAGE);
             }
+           
             else {
             	System.out.println("success");
             	UserClass found = userData.generateUser(usernameEntered, passwordEntered);

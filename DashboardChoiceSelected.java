@@ -1,9 +1,9 @@
 
-public class choiceSelected {
+public class DashboardChoiceSelected {
 
 	private int choice;
 	
-	public choiceSelected(int i) {
+	public DashboardChoiceSelected(int i) {
 		choice = i;
 	}
 	

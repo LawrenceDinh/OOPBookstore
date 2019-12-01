@@ -103,7 +103,7 @@ public class UserManager
 	{
 		try
 		{
-			File file = new File("E:\\Eclipse\\0Fall151\\ws\\LabProject\\src\\users.txt");
+			File file = new File("E:\\Eclipse\\0Fall151\\ws\\LabProject\\src\\userList.txt");
 	        FileReader fr = new FileReader(file);
 	        BufferedReader br = new BufferedReader(fr);
 	        String line="";
@@ -152,13 +152,13 @@ public class UserManager
 
     
         
-	}
+	} 
 	
 	public void writeUsers()
 	{
 		try
 		{
-			File file = new File("E:\\Eclipse\\0Fall151\\ws\\LabProject\\src\\users.txt");
+			File file = new File("E:\\Eclipse\\0Fall151\\ws\\LabProject\\src\\userList.txt");
 	        FileWriter fw = new FileWriter(file);
 	        BufferedWriter bw = new BufferedWriter(fw);
 	        bw.write(""+lastUserID);
