@@ -21,9 +21,11 @@ class changePassGUI extends JFrame implements ActionListener {
     // label to display text 
     static JLabel l, title; 
   
+    private UserClass thisUser;
     // default constructor 
-    changePassGUI() 
+    changePassGUI(UserClass user) 
     { 
+    	thisUser = user;
     } 
   
     // main class 
@@ -42,7 +44,7 @@ class changePassGUI extends JFrame implements ActionListener {
         exit = new JButton("Close Window"); 
         JLabel n = new JLabel("");
         // create a object of the text class 
-        changePassGUI te = new changePassGUI(); 
+        changePassGUI te = new changePassGUI(thisUser); 
         
 
         
@@ -89,10 +91,15 @@ class changePassGUI extends JFrame implements ActionListener {
         String s = e.getActionCommand(); 
         if (s.equals("Confirm Changes")) { 
             // set the text of the label to the text of the field 
+        	
             l.setText(t.getText()); 
-  
+            thisUser.setPassword(t.getText());
+            System.out.println("New pass: " + t.getText());
             // set the text of field to blank 
             t.setText("  "); 
+			  f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+			  f.setVisible(false);
+			  f.dispose();
         } 
     } 
 } 
