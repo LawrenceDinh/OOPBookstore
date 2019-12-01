@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 import java.util.concurrent.CountDownLatch;
 
 
-public class editItem extends JDialog{
+public class editItemViewer extends JDialog{
 
 	private ItemClass choosen = null;
 
@@ -32,13 +32,13 @@ public class editItem extends JDialog{
 	private ItemClass item;
 	private JScrollPane scroll;
 	private JTextArea display;
-	private String itemDesc;
-	private String itemTitle;
+	private String itemDesc = null;
+	private String itemTitle = null;
 	CountDownLatch n;
 	
-	public editItem(ItemClass itemSearched)
+	public editItemViewer(ItemClass itemSearched, CountDownLatch latch) throws InterruptedException
 	{
-		n = new CountDownLatch(1);
+		n = latch;
 		item = itemSearched;
 		title = new JLabel("Edit " + itemSearched.getItemName() + "'s Title");
 		title.setHorizontalAlignment(JLabel.CENTER);
@@ -81,6 +81,33 @@ public class editItem extends JDialog{
 		this.add(middlePortion, BorderLayout.CENTER);
 		this.add(bottomPortion, BorderLayout.PAGE_END);
 		
+		  close_button.addActionListener(new ActionListener()
+			{
+				  public void actionPerformed(ActionEvent e)
+				  {
+				    // display/center the jdialog when the button is pressed
+					  System.out.println("WWW");
+					  setVisible(false);
+					  dispose();
+				  }
+				  
+				});
+			
+			view_button.addActionListener(new ActionListener()
+			{
+				  public void actionPerformed(ActionEvent e)
+				  {
+				    // display/center the jdialog when the button is pressed
+					  System.out.println("GET");
+					  getDescription();
+					  getItemName();
+					  if (!stringEmpty(getDescription())|| !stringEmpty(getItemName())) {
+						  n.countDown();
+					  }
+					  
+				  }
+				});
+			
 		this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
 		this.pack();
 		this.setVisible(true);
@@ -93,18 +120,28 @@ public class editItem extends JDialog{
 	
 	
 	//swap the cards
+	
+	public boolean stringEmpty(String s) {
+		if (s.trim().isEmpty() || s == null) {
+			System.out.println("anone");
+			return true;
+		}
+		return false;
+	}
+	
 	public String getDescription(){
 		itemDesc = display.getText();
-		if (itemDesc.trim().isEmpty()) {
-			System.out.println("anone");
+		if (!stringEmpty(itemDesc)) {
+			System.out.println(itemDesc);
 		}
 		return itemDesc;
 	}
-	
-	public String getTitle() {
+
+
+	public String getItemName() {
 		itemTitle = item_name.getText();
-		if (itemTitle.trim().isEmpty()) {
-			System.out.println("bnone");
+		if (!stringEmpty(itemTitle)) {
+			System.out.println(itemTitle);
 		}
 		return itemTitle;
 	}
