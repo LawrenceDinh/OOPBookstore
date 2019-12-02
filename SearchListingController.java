@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -12,8 +13,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SearchListingController extends TableController{
 
-	public SearchListingController(SearchListingViewer viewer, ItemManager itemManager, UserManager userManager) {
-		super(viewer, itemManager, userManager);
+	public SearchListingController(CountDownLatch latch, SearchListingViewer viewer, ItemManager itemManager, UserManager userManager) {
+		super(latch, viewer, itemManager, userManager);
 	}
 	
 	public void start()

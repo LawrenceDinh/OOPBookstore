@@ -3,6 +3,18 @@ import java.util.concurrent.CountDownLatch;
 public class DashboardDriver {
 
 	
+	/**
+	 * 7
+1~ww~a~0
+6~a c ~a b ~0
+3~a~my p~0`1`2`3
+4~ab~a~0
+5~a b ~a~0
+7~Bob~pass1~0`4`5
+2~aaww~a~0
+
+	 */
+	
 	
 	private int choice = -1;
 	DashboardChoiceSelected c;
@@ -43,20 +55,35 @@ public class DashboardDriver {
 		switch(c.getChoice()) {
 		case 0:
 			System.out.println("Post item UI");
+			CountDownLatch aLatch = new CountDownLatch(1);
+			ItemPoster postItem = new ItemPoster(aLatch, items, getCurrentUser());
+			postItem.dragAndDropDisplay();
+			aLatch.await();
+			runDashboard();
+			
 			break;
 		case 1:
 			System.out.println("Search item UI");
 			//CountDownLatch n = new CountDownLatch(1);
 			//n.await();
+			CountDownLatch a = new CountDownLatch(1);
+			SearchListingViewer slv = new SearchListingViewer();
+			SearchListingController slc = new SearchListingController(a,slv, items, users);
+			slc.start();
+			a.await();
+			runDashboard();
 			break;
 		case 2:
-			//System.out.println("View Own Items UI");
+			System.out.println("View Own Items UI");
+			
 			UserListingViewer ulv = new UserListingViewer();
-			UserListingController ulc = new UserListingController(ulv, items, users, getCurrentUser().getUserName());
 			CountDownLatch n = new CountDownLatch(1);
+			UserListingController ulc = new UserListingController(n,ulv, items, users, getCurrentUser().getUserName());
+
 			ulc.start();
 
-			//n.await();
+			n.await();
+			runDashboard();
 			break;
 		case 3:
 			System.out.println("Change password UI");

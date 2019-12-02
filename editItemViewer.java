@@ -1,4 +1,4 @@
-package editGUI;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dialog;
@@ -35,7 +35,7 @@ public class editItemViewer extends JDialog{
 	private JTextArea display;
 	private String itemDesc = null;
 	private String itemTitle = null;
-	CountDownLatch n;
+	private CountDownLatch n;
 	
 	public editItemViewer(ItemClass itemSearched, CountDownLatch latch) throws InterruptedException
 	{
@@ -82,6 +82,22 @@ public class editItemViewer extends JDialog{
 		this.add(middlePortion, BorderLayout.CENTER);
 		this.add(bottomPortion, BorderLayout.PAGE_END);
 		
+		this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+		this.pack();
+		this.setVisible(true);
+		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		
+
+	}
+	
+	
+	
+	//setter to change the table to a new model
+	
+	
+	//swap the cards
+	
+	public void addACL() {
 		  close_button.addActionListener(new ActionListener()
 			{
 				  public void actionPerformed(ActionEvent e)
@@ -90,6 +106,7 @@ public class editItemViewer extends JDialog{
 					  setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 					  setVisible(false);
 					  dispose();
+					  System.out.println("runs");
 					  n.countDown();
 				  }
 				  
@@ -129,19 +146,7 @@ public class editItemViewer extends JDialog{
 					  
 				  }
 				});
-			
-		this.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
-		this.pack();
-		this.setVisible(true);
-		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
-	
-	
-	
-	//setter to change the table to a new model
-	
-	
-	//swap the cards
 	
 	public boolean stringEmpty(String s) {
 		if (s.trim().isEmpty() || s == null) {

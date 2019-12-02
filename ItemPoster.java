@@ -1,31 +1,17 @@
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-
-import static javax.swing.GroupLayout.Alignment.*; 
-
+import java.util.concurrent.CountDownLatch;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import java.awt.image.BufferedImage;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;  
-import java.io.*;
 
-public class DragAndDrop extends JFrame{
+public class ItemPoster extends JFrame{
 
 	private static JTextArea descriptionField;
 	//private static String NowDate="";
 	
 	private JTextField titleName;
 	public JFrame frame;
-	public JButton uploadButton;
+	//public JButton uploadButton;
 	public JButton postButton;
 	public JButton cancelButton;
 	
@@ -35,23 +21,29 @@ public class DragAndDrop extends JFrame{
 	public ItemClass itemplug = new ItemClass( 0,"", 0, "", "");
 	//long itemID, String itemName, int categoryNumber, String description, String sellerName
 	
-	private String categories[] =itemManager.getCategories();
-	public JList cs = new JList(categories) ; 
+	private String categories[];
+	public JList cs; 
 	
 	private UserClass usr;
+	private CountDownLatch cdLatch;
 	 //long userID, String userName, String password, HashSet<Long> listedItemIDs) 
 	
-	public DragAndDrop(ItemManager itemman, UserClass userInfo)
+	public ItemPoster(CountDownLatch latch, ItemManager itemman, UserClass userInfo)
 	{
+
+		cdLatch = latch;
 		itemManager = itemman;
+		categories = itemManager.getCategories();
 		usr = userInfo;
 	}
 	
 	public JScrollPane categoryScroll(String list[])
   {
+	  cs = new JList(categories);
 	  categories = itemManager.getCategories();  
       cs.setOpaque(true);
       cs.setVisibleRowCount(4);
+      cs.setSelectedIndex(0);
 	
       JScrollPane scrollCategory = new JScrollPane(cs);
       return scrollCategory;
@@ -80,8 +72,8 @@ public class DragAndDrop extends JFrame{
 	  frame = new JFrame();
 	  frame.setSize(600, 600);
 	  	
-	  	uploadButton = new JButton("Choose photo");
-		postButton = new JButton("post");
+	  	//uploadButton = new JButton("Choose photo");
+		postButton = new JButton("Post");
 		cancelButton = new JButton("cancel");
 		imglbl = new JLabel();
 
@@ -107,12 +99,12 @@ public class DragAndDrop extends JFrame{
 	    titleName = new JTextField(FIELD_WIDTH);
 	    titleName.setFont(titleName.getFont().deriveFont(30f));
 	    //adjust font size in Jtext field
-	    titleName.setText("Enter title");
+	    titleName.setText("Enter title:");
 	   
 	    JLabel guiId = new JLabel(usr.getUserName());
 	    
 	    descriptionField = new JTextArea(10, FIELD_WIDTH);
-	    descriptionField.setText("Enter description");
+	    descriptionField.setText("Enter description:");
 	    
 	    p1.add(titleQ);
 	    p1.add(titleName);
@@ -124,7 +116,7 @@ public class DragAndDrop extends JFrame{
 	    //p1.add(descriptionQ);
 	    //p1.add(descriptionField);
 	    
-	    p2.add(uploadButton);
+	   // p2.add(uploadButton);
 	    //p2.add(imglbl);
 	    p2.add(descriptionQ);
 	    p2.add(descriptionField);
@@ -169,7 +161,7 @@ public class DragAndDrop extends JFrame{
       	  public void actionPerformed(ActionEvent e) 
 	      {
       		
-	        if (e.getActionCommand().equals("post"))
+	        if (e.getActionCommand().equals("Post"))
 	        {
 	            //int index = cs.getSelectedIndex();
 	            
@@ -224,6 +216,9 @@ public class DragAndDrop extends JFrame{
 	            
 	            itemManager.generateItem(itemTitle, categoNum, descript, usr.getUserName());
 	            //(String itemName, int categoryNumber, String description, String sellerName)
+	           frame.dispose();
+	           usr.addListedItemID(itemManager.getPreviousItemID());
+	           cdLatch.countDown();
 	            //They make an item element on the itemmanager
 	        }
 	     
@@ -235,82 +230,22 @@ public class DragAndDrop extends JFrame{
 	        public void actionPerformed(ActionEvent e) 
 	        {
 	          frame.setVisible(false);
-	          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	          frame.dispose();
+	          cdLatch.countDown();
 	          //close window
 	        }
 	    });
   }
   
   
-  public JFrame dragAndDropDisplay() {
+  public void dragAndDropDisplay() {
 	
-	  	
-	  	//List<BufferedImage> list = new ArrayList<BufferedImage> ();
-	    //Container contentPane = frame.getContentPane();
-	    //GroupLayout groupLayout = new GroupLayout(contentPane);  
-
+	  
 	    GridLayOut();
 	      
-	    /*
-	    groupLayout.setHorizontalGroup(groupLayout.createSequentialGroup()
-	    		.addGroup(groupLayout.createParallelGroup(LEADING)
-	    				.addComponent(titleQ).addComponent(titleName)
-	    		
-	    		.addGroup(groupLayout.createParallelGroup(CENTER)
-	    				.addComponent(uploadButton)
-	    				.addComponent(postButton)
-	    				.addComponent(cancelButton)
-	    				)
-	    			.addGroup(groupLayout.createParallelGroup(LEADING)
-		    				.addComponent(imglbl)
-	    			)
-	    			.addGroup(groupLayout.createParallelGroup(LEADING)
-		    				.addComponent(categoryQ).addComponent(categoryScroll(categories))
-		    				
-	    					)
-	    			
-	    			.addGroup(groupLayout.createParallelGroup(LEADING)
-		    				.addComponent(useridQ)
-		    				.addComponent(guiId)
-		    				
-		    				)
-	    			
-	    			.addGroup(groupLayout.createParallelGroup(LEADING)
-	    					.addGroup(groupLayout.createParallelGroup(LEADING)
-	    							.addGroup(groupLayout.createParallelGroup(LEADING).addComponent(descriptionField))
-	    							)		    				
-	    					)
-	    			
-	    				));
-	    
-	    
-	    groupLayout.setVerticalGroup(groupLayout.createSequentialGroup()
-	    		.addGroup(groupLayout.createSequentialGroup()
-	    				.addGroup(groupLayout.createParallelGroup(BASELINE)
-	    						.addComponent(titleQ).addComponent(titleName)))
-	    		.addGroup(groupLayout.createParallelGroup(BASELINE)
-	    				.addComponent(uploadButton).addComponent(postButton).addComponent(cancelButton))
-	    		
-	    		.addGroup(groupLayout.createParallelGroup(BASELINE)
-	    				.addComponent(imglbl))
- 		
-	    		.addGroup(groupLayout.createParallelGroup(BASELINE)
-	    				.addComponent(useridQ).addComponent(guiId))
-	    		
-	    		.addGroup(groupLayout.createParallelGroup(BASELINE)
-	    				.addComponent(descriptionField)
-	    				
-	    				)
-	    		.addGroup(groupLayout.createParallelGroup(BASELINE)
-	    				
-	    				)
-	    		);
-	    */
 	 
     frame.setVisible(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    return frame;
   }
   
 }

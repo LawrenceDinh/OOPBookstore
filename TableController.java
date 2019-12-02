@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.CountDownLatch;
 
 import javax.swing.JOptionPane;
 
@@ -19,9 +20,11 @@ public class TableController {
 	protected TableViewer viewer;
 	protected ItemManager itemManager;
 	protected UserManager userManager;
+	private CountDownLatch cdLatch;
 	
-	public TableController(TableViewer viewer, ItemManager itemManager, UserManager userManager)
+	public TableController(CountDownLatch latch, TableViewer viewer, ItemManager itemManager, UserManager userManager)
 	{
+		cdLatch = latch;
 		this.viewer = viewer;
 		this.itemManager = itemManager;
 		this.userManager = userManager;
@@ -49,10 +52,21 @@ public class TableController {
 		public void actionPerformed(ActionEvent e) {
 			if (!viewer.tableIsEmpty())
 			{
+				//ItemManager m = new ItemManager();
+				//ItemClass getitem = m.searchItemID(8);
+				//CountDownLatch a = new CountDownLatch(1);
+				//System.out.println("this name: " + getitem.getItemName());
+				//shownItem n = new shownItem(getitem);
+				
 				//open up view item screen
 				System.out.println("View");
 				int row = viewer.getSelectedRow();
-				System.out.println("Item ID: " + viewer.getCellAt(row, ITEM_ID_COL));
+				long itemID = Long.parseLong((String)viewer.getCellAt(row, ITEM_ID_COL));
+				ItemClass item = itemManager.searchItemID(itemID);
+				System.out.println("this item selected: " + item.getItemName());
+				shownItem show = new shownItem(item);
+				show.display_selectedItem();
+
 			} else 
 			{
 				JOptionPane.showMessageDialog(viewer, "Nothing to view.", "No item selection", JOptionPane.WARNING_MESSAGE);
@@ -71,6 +85,7 @@ public class TableController {
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Close");
 			viewer.dispose();
+			cdLatch.countDown();
 		}
 		
 	}

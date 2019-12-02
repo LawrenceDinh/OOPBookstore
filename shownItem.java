@@ -29,7 +29,7 @@ public class shownItem extends JFrame{
 	private JFrame frame;
 	private JLabel category;
 	
-	private ItemClass itemplug = new ItemClass(0,"",0,"","");
+	private ItemClass itemplug;// = new ItemClass(0,"",0,"","");
 	//long itemID, String itemName, int categoryNumber, String description, String sellerID
 	
 	//public UserClass usr= new UserClass(0, "" , "" ,  new HashSet<Long>() ); 
@@ -141,7 +141,7 @@ public class shownItem extends JFrame{
 	        public void actionPerformed(ActionEvent e) {
 	        
 	          frame.setVisible(false);
-	          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	          frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	          frame.dispose();
 	          //close
 	        }
@@ -251,7 +251,7 @@ public class shownItem extends JFrame{
 	    		);
 	 */   
     frame.setVisible(true);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     return frame;
   }
   

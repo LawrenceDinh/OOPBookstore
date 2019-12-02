@@ -1,12 +1,7 @@
-11
-1~Junkyard Dog MK.III~1~Sol's weapon in Xrd~Sol Badguy
-2~Magnolia Eclair II~1~Ky's weapon in Xrd~Ky Kiske
-3~Zephyr~1~Nanase's weapon~Nanase
-4~Great Yamada Attack~2~May's overdrive~May
-5~Junkyard Dog MK.II~1~Sol's weapon in not Xrd~Sol Badguy
-6~Fafnir~1~41236H~Sol Badguy
-7~Volcanic Viper~1~623s/H~Sol Badguy
-8~Grand Viper~1~214S or something~Sol Badguy
-9~Dragon Install~1~Let it oout~Sol Badguy
-10~Bandit Bringer~1~236K~Sol Badguy
-11~Bandit Revolver~1~236[K]~Sol Badguy
+7
+1~item1changed~0~item1 desc~a
+2~item2~2~item2 desc~a
+3~Enter title:~0~Enter description:~a
+4~book1~1~book1 desc~Bob
+5~Catcher and the Rye~1~the fun adventures of holden~Bob
+7~book45~1~asdf~Alice

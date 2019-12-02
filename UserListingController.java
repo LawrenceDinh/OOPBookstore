@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -13,8 +14,8 @@ public class UserListingController extends TableController{
 	
 	private String user;
 
-	public UserListingController(UserListingViewer viewer, ItemManager itemManager, UserManager userManager, String user) {
-		super(viewer, itemManager, userManager);
+	public UserListingController(CountDownLatch latch, UserListingViewer viewer, ItemManager itemManager, UserManager userManager, String user) {
+		super(latch, viewer, itemManager, userManager);
 		this.user = user;
 	}
 	
@@ -59,10 +60,28 @@ public class UserListingController extends TableController{
 //		private ItemClass item;
 		
 		public void actionPerformed(ActionEvent e) {
+			editItemViewer editGUI = null;
 			if (!viewer.tableIsEmpty())
 			{
-				//open up edit screen to edit the item
+				System.out.println("View");
+				int row = viewer.getSelectedRow();
+				long itemID = Long.parseLong((String)viewer.getCellAt(row, ITEM_ID_COL));
+				ItemClass item = itemManager.searchItemID(itemID);
+				System.out.println("this item selected: " + item.getItemName());
 				System.out.println("Edit");
+				CountDownLatch k = new CountDownLatch(1);
+				try {
+					editGUI = new editItemViewer(item, k);
+					editGUI.addACL();
+					//k.await();
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+	
+			//	editGUI.setVisible(false);
+				//viewer.updateTable();
+				
 			} else
 			{
 				JOptionPane.showMessageDialog(viewer, "Nothing to edit.", "No item selection", JOptionPane.WARNING_MESSAGE);

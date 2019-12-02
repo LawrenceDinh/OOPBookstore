@@ -99,9 +99,6 @@ public class SignUpFrame extends JFrame{
           //  passwordEntered = "Pass";
       //      System.out.println(usernameEntered + passwordEntered);
             
-            usernameEntered =  usernameEntered.replaceAll("\\s+","");
-            
-            passwordEntered =  passwordEntered.replaceAll("\\s+","");
            
             if((usernameEntered.isEmpty()) || (passwordEntered.isEmpty()))
             {

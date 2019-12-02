@@ -95,9 +95,6 @@ public class LogInFrame extends JFrame{
         //    usernameEntered = "Bob";
           //  passwordEntered = "Pass";
       //      System.out.println(usernameEntered + passwordEntered);
-            usernameEntered =  usernameEntered.replaceAll("\\s+","");
-           
-            passwordEntered =  passwordEntered.replaceAll("\\s+","");
            
             if((usernameEntered.isEmpty()) || (passwordEntered.isEmpty()))
             {
