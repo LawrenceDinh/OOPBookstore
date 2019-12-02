@@ -84,7 +84,6 @@ public class DashboardDriver {
 			runDashboard();
 			break;
 		case 4:
-			System.out.println("Program terminating");
 			break;
 		}
 	}

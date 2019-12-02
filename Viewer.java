@@ -27,7 +27,7 @@ public class Viewer {
 
 			((LogInFrame) LogInFrame).updatesFrame(SignUpFrame);
 
-			LogInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			LogInFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			SignUpFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
 			SignUpFrame.setVisible(true);
@@ -35,7 +35,7 @@ public class Viewer {
 			latch.await();
 			
 			user = ((LogInFrame) LogInFrame).getUser();
-			
+			//users.writeUsers();
 			}
 			
 

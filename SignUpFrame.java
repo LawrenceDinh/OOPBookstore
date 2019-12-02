@@ -83,6 +83,8 @@ public class SignUpFrame extends JFrame{
  
         public void actionPerformed(ActionEvent event) {
         	System.out.println("Terminating program");
+        	userData.writeUsers();
+        	setVisible(false);
         	System.exit(1);
         }
     }
