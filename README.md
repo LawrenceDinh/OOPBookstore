@@ -2,7 +2,7 @@
 
 Please note you can download this project by clicking on the green "Clone or download" button
 
-MOST UPDATED VERSION: CS 151 Project SJSU Fall 2019
+MOST UPDATED VERSION: SJSU CS 151 Project
 
 Project Report Document: https://docs.google.com/document/d/1X3oBoukzML1SQoDn3zbapv81cD69cOxALhxFRSZpQkQ/view
 
@@ -41,3 +41,5 @@ When the user is finished with any particular dashboard window, they can press t
 
 ##Authors and acknowledgement
 Project Authors: Benjamin Townsend, Kevin Ngo, Luat Dinh, Jinhan Han
+
+Date: 12/2/2019
