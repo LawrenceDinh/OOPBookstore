@@ -1,9 +1,11 @@
+package draganddrop;
+
 public class ItemClass 
 {
 	private final long itemID;
 	private String itemName;
 	private int categoryNumber;
-	private String description;
+	private String description; // descriptions for item
 	private final String sellerName;
 	
 	
@@ -14,10 +16,11 @@ public class ItemClass
 		this.categoryNumber = categoryNumber;
 		this.description=description;
 		this.sellerName=sellerName;
+		// set constructor with these variables
 	}
 	
 	//getters and setters
-	
+	//most information parameter take from itemgenerate() in ItemManager and ItemPoster
 	
 	public long getItemID()
 	{
