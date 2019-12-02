@@ -1,11 +1,24 @@
 import java.util.HashSet;
 
+/**
+ * A class to store user data
+ * @author BT
+ *
+ */
 public class UserClass 
 {
 	private final long userID;
 	private String userName;
 	private String password;
 	private HashSet<Long> listedItemIDs;
+	
+	/**
+	 * Constructs a UserClass
+	 * @param userID the user's ID number
+	 * @param userName the user's name
+	 * @param password the user's password
+	 * @param listedItemIDs the ID numbers of the User's posted items
+	 */
 	public UserClass(long userID, String userName, String password, HashSet<Long> listedItemIDs)
 	{
 		this.userID=userID;

@@ -1,5 +1,11 @@
 import java.util.concurrent.CountDownLatch;
 
+/**Initialize the change password GUI through changePasswordUI() method.
+ * Waits until user updates the empty textfield or clicks the "Cancel" JButton.
+ * @author LUAT DINH
+ */
+
+
 public class DashboardDriver {
 
 	

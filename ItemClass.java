@@ -1,14 +1,24 @@
-
-
+/**
+ * A class to store item data
+ * @author BT
+ *
+ */
 public class ItemClass 
 {
 	private final long itemID;
 	private String itemName;
 	private int categoryNumber;
-	private String description; // descriptions for item
+	private String description;
 	private final String sellerName;
 	
-	
+	/**
+	 * Constructs an ItemClass
+	 * @param itemID the item's ID number
+	 * @param itemName the item's name
+	 * @param categoryNumber the item's category number
+	 * @param description the item's description
+	 * @param sellerName the name of the item's seller
+	 */
 	public ItemClass(long itemID, String itemName, int categoryNumber, String description, String sellerName)
 	{
 		this.itemID=itemID;
@@ -16,11 +26,9 @@ public class ItemClass
 		this.categoryNumber = categoryNumber;
 		this.description=description;
 		this.sellerName=sellerName;
-		// set constructor with these variables
 	}
 	
 	//getters and setters
-	//most information parameter take from itemgenerate() in ItemManager and ItemPoster
 	
 	public long getItemID()
 	{

@@ -10,11 +10,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 
-
-//TODO: clean up Try/Catch for write and read methods
-//TODO: Add specific criterion search methods (name etc.)
-//TODO: add comments
-//TODO: write test program and test this code
+/**
+ * A class that manages UserClass objects
+ * @author BT
+ *
+ */
 public class UserManager 
 {
 	private HashMap<String, UserClass> userMap;
@@ -22,6 +22,9 @@ public class UserManager
 	private long lastUserID;
 	private long previousUserID;
 	
+	/**
+	 * Constructs a UserManager and reads UserClass data from file storage into Map storage
+	 */
 	public UserManager()
 	{
 		userMap=new HashMap<String, UserClass>();
@@ -31,26 +34,51 @@ public class UserManager
 		readUsers();
 	}
 	
+	/**
+	 * Gets the UserClass object with the given name from Map storage
+	 * @param name the name of the desired user
+	 * @return the UserClass object with the given name
+	 */
 	public UserClass searchUserName(String name)
 	{
 		return userMap.get(name);
 	}
 	
+	/**
+	 * Gets the ID number of the user with the given name from Map storage
+	 * @param name the name of the desired user
+	 * @return the ID number of the desired user
+	 */
 	public long searchIDbyName(String name)
 	{
 		return searchUserName(name).getUserID();
 	}
 	
+	/**
+	 * Gets the IDs of the posted items of the user with the given name from Map storage
+	 * @param name the name of the desired user
+	 * @return the given user's posted items
+	 */
 	public HashSet<Long> getUsersListedItems(String name)
 	{
 		return userMap.get(name).getListedItemIDs();
 	}
 	
+	/**
+	 * Adds the given UserClass object into Map storage
+	 * @param aUser the user to be added
+	 */
 	public void addUser(UserClass aUser)
 	{
 		userMap.put(aUser.getUserName(),aUser);
 	}
 	
+	/**
+	 * Creates a UserClass object with given characteristics and places it into Map storage
+	 * @param userName the name of the new user
+	 * @param password the password of the new user
+	 * @return the new UserClass object
+	 */
 	public UserClass generateUser(String userName, String password)
 	{
 		lastUserID++;
@@ -67,13 +95,11 @@ public class UserManager
 		return previousUserID;
 	}
 	
-	//Shouldn't have a getter for userMap
-//	public HashMap <Long, UserClass> getUserMap(){
-//		return userMap;
-//	}
-	
-	
-	//use this method for account signup to prevent duplicate names
+	/**
+	 * Checks whether the user name is in use for Account Signup
+	 * @param name the user name to be checked
+	 * @return the availability status of the user name
+	 */
 	public boolean userNameFree(String name)
 	{
 		if(userMap.containsKey(name))
@@ -83,6 +109,12 @@ public class UserManager
 		return true;
 	}
 	
+	/**
+	 * Checks user credentials for Login
+	 * @param name the user name entered
+	 * @param pass the password entered
+	 * @return the UserClass object with matching name and password
+	 */
 	public UserClass searchCredentials(String name, String pass)
 	{
 		Iterator<Map.Entry<String, UserClass>> itr = userMap.entrySet().iterator();
@@ -99,6 +131,9 @@ public class UserManager
 		return null;
 	}
 	
+	/**
+	 * Reads UserClass data from file storage into Map storage
+	 */
 	public void readUsers()
 	{
 		try
@@ -154,6 +189,9 @@ public class UserManager
         
 	}
 	
+	/**
+	 * Writes UserClass data from Map storage into file storage
+	 */
 	public void writeUsers()
 	{
 		try

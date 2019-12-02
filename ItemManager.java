@@ -11,10 +11,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 
-//TODO: Try/Catch for write and read methods
-//TODO: Add specific criterion search methods (name etc.)
-//TODO: add comments
-//TODO: write test program and test this code
+/**
+ * A class that manages ItemClass objects
+ * @author BT
+ *
+ */
 public class ItemManager 
 {	
 	private HashMap<Long, ItemClass> itemMap;
@@ -23,6 +24,9 @@ public class ItemManager
 	private long previousItemID;
 	private String[] categories;
 	
+	/**
+	 * Constructs an ItemManager and reads ItemClass data from file storage into Map storage
+	 */
 	public ItemManager()
 	{
 		itemMap=new HashMap<Long, ItemClass>();
@@ -34,21 +38,40 @@ public class ItemManager
 		readItems();
 	}
 	
+	/**
+	 * Gets the String array of preselected item types
+	 * @return the String array of categories
+	 */
 	public String[] getCategories()
 	{
 		return categories;
 	}
 	
+	/**
+	 * Gets the String name of the category with the provided index
+	 * @param index the categoryNumber index
+	 * @return the String category name
+	 */
 	public String getCategory(int index)
 	{
 		return categories[index];
 	}
 	
+	/**
+	 * Gets the ItemClass object with the provided item IDs from Map storage
+	 * @param id the itemID of the desired ItemClass object
+	 * @return the ItemClass with the given ID
+	 */
 	public ItemClass searchItemID(long id)
 	{
 		return itemMap.get(id);
 	}
 	
+	/**
+	 * Gets the ItemClass objects with the provided item IDs from Map storage
+	 * @param ids the itemID of the desired ItemClass objects
+	 * @return an ArrayList of ItemClass objects with the given IDs
+	 */
 	public ArrayList<ItemClass> searchItemIDs(HashSet<Long> ids)
 	{
 		ArrayList<ItemClass> matches=new ArrayList<>();
@@ -59,6 +82,11 @@ public class ItemManager
 		return matches;
 	}
 	
+	/**
+	 * Gets the ItemClass objects with the provided item name from Map storage
+	 * @param name the item name to be searched for
+	 * @return an ArrayList of ItemClass objects with the given name
+	 */
 	public ArrayList<ItemClass> searchItemName(String name)
 	{
 		Iterator<Map.Entry<Long, ItemClass>> itr = itemMap.entrySet().iterator();
@@ -76,6 +104,11 @@ public class ItemManager
 		return matches;
 	}
 	
+	/**
+	 * Gets the ItemClass objects with the provided category numbers from Map storage
+	 * @param categoryNum the category number to be searched for
+	 * @return an ArrayList of ItemClass objects with the given category number
+	 */
 	public ArrayList<ItemClass> searchItemCategory(int categoryNum)
 	{
 		Iterator<Map.Entry<Long, ItemClass>> itr = itemMap.entrySet().iterator();
@@ -93,7 +126,14 @@ public class ItemManager
 		return matches;
 	}
 	
-	
+	/**
+	 * Creates an ItemClass object with given characteristics and places it in Map storage
+	 * @param itemName the name of the new item
+	 * @param categoryNumber the category number of the new item
+	 * @param description the description of the new item
+	 * @param sellerName the name of the seller of the new item
+	 * @return the new ItemClass object
+	 */
 	public ItemClass generateItem(String itemName, int categoryNumber, String description, String sellerName)
 	{
 		lastItemID++;
@@ -107,12 +147,19 @@ public class ItemManager
 	{
 		return previousItemID;
 	}
-
+	
+	/**
+	 * Removes the item with given ID from Map storage
+	 * @param aItemID the ID of the item to be removed
+	 */
 	public void deleteItem(Long aItemID)
 	{
 		itemMap.remove(aItemID);
 	}
 	
+	/**
+	 * Reads ItemClass data from file storage into Map storage
+	 */
 	public void readItems()
 	{
 		try
@@ -158,6 +205,9 @@ public class ItemManager
 		
 	}
 	
+	/**
+	 * Writes ItemClass data from Map storage into file storage
+	 */
 	public void writeItems()
 	{
 		try

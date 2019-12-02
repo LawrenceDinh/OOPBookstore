@@ -27,8 +27,11 @@ public class changePassGUI extends JFrame implements ActionListener {
     private static JLabel title; 
     private UserClass thisUser;
 	private CountDownLatch latch;
-	
-    //constructor 
+	/**
+	 * Constructs a changePassGUI class
+	 * @param thisUser2 instance of this user
+	 * @param cd is this countdownlatch
+	 */
     public changePassGUI(UserClass thisUser2, CountDownLatch cd) 
     { 
     	latch = cd;
@@ -37,7 +40,6 @@ public class changePassGUI extends JFrame implements ActionListener {
   
 	/**Constructs frames and elements for changePassGUI
 	 */
-    
     public void changePasswordUI()
     {
 

@@ -26,6 +26,12 @@ public class LogInFrame extends JFrame{
    private CountDownLatch latch;
    private  JFrame sFrame;
  
+	/**
+	 * Constructs a LogInFrame
+	 * @param users current instance of userManager
+	 * @param signal this countdownlatch
+	 * @param signUpFrame signUpFrame object to open on request
+	 */
     public LogInFrame(UserManager users, CountDownLatch signal, JFrame signUpFrame) throws FileNotFoundException
      {
     	sFrame = signUpFrame;

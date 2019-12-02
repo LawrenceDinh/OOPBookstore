@@ -42,9 +42,12 @@ public class editItemViewer extends JDialog{
 	private String itemTitle = null;
 	private CountDownLatch n;
 	
-	/** editItemViewer constructor that generates new JPanel and waits 
-	*   for user to update empty text fields
-	*/
+	/**
+	 * editItemViewer constructor that generates new JPanel and waits 
+	 * for user to update empty text fields
+	 * @param itemSearch the item user selected to edit
+	 * @param latch current countdownlatch
+	 */
 	public editItemViewer(ItemClass itemSearched, CountDownLatch latch) throws InterruptedException
 	{
 		n = latch;

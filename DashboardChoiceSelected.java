@@ -6,7 +6,6 @@
  * @author LUAT DINH
  *
  */
-
 public class DashboardChoiceSelected {
 
 	private int choice;

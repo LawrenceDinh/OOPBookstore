@@ -41,6 +41,13 @@ public class DashboardFrame extends JPanel
     
 
 //create dashboard frame and attach objects in specific layouts 
+	/**
+	 * Constructs a DashboardFrame
+	 * @param signal this countdownlatch
+	 * @param select dashboard choice selected
+	 * @param c dashboardchoiceselected getting the int
+	 * @param user is the userclass currently logged in
+	 */
   public DashboardFrame(CountDownLatch signal, int select, DashboardChoiceSelected c, UserClass user) {
 	  userName = user;
 	  intInput = c;
