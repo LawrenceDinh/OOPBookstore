@@ -58,8 +58,8 @@ public class ItemPoster extends JFrame{
 	  frame.setSize(600, 600);
 	  	
 	  	
-		postButton = new JButton("Post");
-		cancelButton = new JButton("cancel");
+		postButton = new JButton("Confirm Post");
+		cancelButton = new JButton("Cancel");
 		//button groups
 
 		buttonAction() ;// buttonAction method includes all button's actions
@@ -75,23 +75,23 @@ public class ItemPoster extends JFrame{
 	    
 	    final int FIELD_WIDTH = 35;
 	    
-	    JLabel titleQ = new JLabel("\t   Title : ");
-	    JLabel useridQ = new JLabel("\t   The User ID : ");
-	    JLabel categoryQ = new JLabel("\t   Category lists ");
-	    JLabel descriptionQ = new JLabel("\t   Description ");
+	    JLabel titleQ = new JLabel("\t   Enter New Name: ");
+	    JLabel useridQ = new JLabel("\t   Posting Item As: ");
+	    JLabel categoryQ = new JLabel("\t   Select New Category Option: ");
+	    JLabel descriptionQ = new JLabel("\t   Enter New Description Below:");
 	    // all question Jlabel groups
 	    
 	    titleName = new JTextField(FIELD_WIDTH);
-	    titleName.setFont(titleName.getFont().deriveFont(30f));
+	   // titleName.setFont(titleName.getFont().deriveFont(30f));
 	    //adjust font size in Jtext field
 	    
-	    titleName.setText("Enter title:");
+	    titleName.setText("New Item Name Here");
 	   
-	    JLabel guiId = new JLabel(usr.getUserName());
+	    JLabel guiId = new JLabel("User: " + usr.getUserName());
 	    // get userId from user and assing in Id label
 	    
 	    descriptionField = new JTextArea(10, FIELD_WIDTH); // size of description field
-	    descriptionField.setText("Enter description:");
+	    descriptionField.setText("New Description Here");
 	    
 	    p1.add(titleQ);
 	    p1.add(titleName);
@@ -129,7 +129,7 @@ public class ItemPoster extends JFrame{
       	  public void actionPerformed(ActionEvent e) 
 	      {
       		
-	        if (e.getActionCommand().equals("Post"))
+	        if (e.getActionCommand().equals("Confirm Post"))
 	        {
 	            
 	            String itemTitle = titleName.getText();

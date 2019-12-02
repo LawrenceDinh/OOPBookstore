@@ -1,4 +1,12 @@
 
+/**Class to update and maintain the choice selected 
+ * by the Dashboard. Used to determine which UI to launch.
+ * Choice is saved as int. 
+ * 
+ * @author LUAT DINH
+ *
+ */
+
 public class DashboardChoiceSelected {
 
 	private int choice;

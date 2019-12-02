@@ -59,10 +59,10 @@ public class shownItem extends JFrame{
 	    
 	    final int FIELD_WIDTH = 35;
 	    
-	    JLabel titleQ = new JLabel("\t   Title : ");
-	    JLabel useridQ = new JLabel("\t   The User ID : ");
-	    JLabel categoryQ = new JLabel("\t   Category lists : ");
-	    JLabel descriptionQ = new JLabel("\t   Description ");
+	    JLabel titleQ = new JLabel("\t   Item name: ");
+	    JLabel useridQ = new JLabel("\t   Original Poster's Username: ");
+	    JLabel categoryQ = new JLabel("\t   Item Category: ");
+	    JLabel descriptionQ = new JLabel("\t   Item Description: ");
 	    // questionair Jlabel
 	    
 	    titleName = new JLabel(itemplug.getItemName());

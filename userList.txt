@@ -1,13 +1,4 @@
-12
-7~user1~q~0
-8~user2~q~0
-3~a b~q~0`9
-5~Trudy2~d~0
-6~Trudy3~d~0
-1~Bob~pass2~0`4`5
-2~Alice~q~0`7`8
-4~Trudy~d~0
-12~new user~a~0
-11~user5~a~0
-9~user3~q~0
-10~user4~a b ~0
+3
+1~u1~a~0
+2~u2~a~0`1`2`3`4`5`6`7
+3~u3~a~0

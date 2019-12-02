@@ -17,7 +17,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import javax.swing.ListSelectionModel;
-
+/**Construct a dashboard Jframe with 5 options to 'Post an Item', 
+ * 'Search for Item', 'View your posted items', 'Change Password', 
+ * 'Exit Program', and a JButton to confirm what you selected.
+ * @author LUAT DINH
+ *
+ */
 public class DashboardFrame extends JPanel
 {
     private JList<String> itemlist;
@@ -35,7 +40,7 @@ public class DashboardFrame extends JPanel
 	// public DragAndDrop drp = new DragAndDrop();  
     
 
-
+//create dashboard frame and attach objects in specific layouts 
   public DashboardFrame(CountDownLatch signal, int select, DashboardChoiceSelected c, UserClass user) {
 	  userName = user;
 	  intInput = c;
@@ -55,7 +60,7 @@ public class DashboardFrame extends JPanel
 	  
       setLayout(new BorderLayout());
       
-      JButton button = new JButton("Select");
+      JButton button = new JButton("Confirm Selection");
       button.setFont(new Font("Arial",Font.BOLD,14));
       button.addActionListener(new PrintListener(intInput));
 
@@ -76,6 +81,10 @@ public int getChoice() {
 	return option;
 }
 
+/**Construct a new Jframe and attach the dashboard object to it. 
+ * 
+ *
+ */
   public void run() throws InterruptedException {
 	  
       JFrame frame = new JFrame("Dashboard User Interface");
@@ -106,7 +115,11 @@ public int getChoice() {
 	  option = i;
   }
 
-  // An inner class to respond to clicks on the Print button
+  /**ActionListener for when user clicks on 'Confirm Selected' button.
+   * Checks if the choice selected is valid and saves choice to 
+   * DashboardChoiceSelected.
+   *
+   */
  class PrintListener implements ActionListener{
 	 
 	 DashboardChoiceSelected temp;
@@ -129,12 +142,14 @@ public int getChoice() {
           }
       }
   
+ /** Returning the selected choice as an Int.
+  *
+  * @return int choice the choice selected
+  */
   public int search(){
 	  if(!itemlist.isSelectionEmpty()){
 		  
-
 	  selected = itemlist.getSelectedIndices();
- 
           int choice = selected[0];
           setOption(choice);
 

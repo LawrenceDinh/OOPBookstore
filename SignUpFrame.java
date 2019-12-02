@@ -1,6 +1,9 @@
-/////////////////
-
- 
+/**Used to generate the Sign Up frame displayed at the 
+ * launch of the program. 
+ * 
+ * @author LUAT DINH
+ *
+ */
 import javax.swing.*;
 
 import java.awt.Font;
@@ -27,6 +30,9 @@ public class SignUpFrame extends JFrame{
     
     //public static useClass userObj= new userClass();
  
+    
+    //Passes loginFrame as parameter to constructor to open later as an Action Event.
+    //UserManager users used to authenticate info 
     public SignUpFrame(UserManager users, JFrame login, CountDownLatch signal) throws FileNotFoundException
      {
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -37,8 +43,9 @@ public class SignUpFrame extends JFrame{
   
      }
    
-
- 
+	/**instantiates a new signup frame object and adds elements to it.
+	 *
+	 */
     private void createComponents() throws FileNotFoundException {
         userNameField = new JTextField(10);
         passwordField = new JTextField(10);
@@ -78,7 +85,9 @@ public class SignUpFrame extends JFrame{
     }
  
     
-    //exit program
+	/**Exit the Program. Writes all generated users to text file.
+	 * 
+	 */
     public class ClickListener1 implements ActionListener {
  
         public void actionPerformed(ActionEvent event) {
@@ -90,15 +99,14 @@ public class SignUpFrame extends JFrame{
     }
  
  
-    //try to sign up 
- 
+	/**Sign up button action Listener. Trying to sign up
+	 *
+	 */
     public class ClickListener2 implements ActionListener {
  
         public void actionPerformed(ActionEvent event) {
             usernameEntered = userNameField.getText();
             passwordEntered = passwordField.getText();
-        //    usernameEntered = "Bob";
-          //  passwordEntered = "Pass";
       //      System.out.println(usernameEntered + passwordEntered);
             
            
@@ -135,8 +143,9 @@ public class SignUpFrame extends JFrame{
     }
    
     
-    //go to login frame 
-    
+	/**Go to Login Frame action Listener
+	 *
+	 */
     public class ClickListener3 implements ActionListener {
  
         public void actionPerformed(ActionEvent event) {

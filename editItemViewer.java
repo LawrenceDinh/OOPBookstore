@@ -17,7 +17,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.CountDownLatch;
 
-
+/**Displays a window with two text fields representing the item's 
+ * title and description, with buttons to Confirm or Cancel. 
+ * Clicking confirm will update the item's field to the entered text. 
+ * @author LUAT DINH
+ *
+ */
 public class editItemViewer extends JDialog{
 
 	private ItemClass choosen = null;
@@ -26,7 +31,7 @@ public class editItemViewer extends JDialog{
 	
 	private JPanel search_panel = new JPanel(new CardLayout());
 	private JTextField item_name = new JTextField(30);
-	private JButton view_button = new JButton("Confirm Changes");
+	private JButton confirm_button = new JButton("Confirm Changes");
 	private JButton close_button = new JButton("Close");
 	private JLabel title;
 	private JLabel description;
@@ -37,6 +42,9 @@ public class editItemViewer extends JDialog{
 	private String itemTitle = null;
 	private CountDownLatch n;
 	
+	/** editItemViewer constructor that generates new JPanel and waits 
+	*   for user to update empty text fields
+	*/
 	public editItemViewer(ItemClass itemSearched, CountDownLatch latch) throws InterruptedException
 	{
 		n = latch;
@@ -73,7 +81,7 @@ public class editItemViewer extends JDialog{
 		
 		JPanel bottomPortion = new JPanel();
 		bottomPortion.setLayout(new GridLayout(0, 1));
-		bottomPortion.add(view_button);
+		bottomPortion.add(confirm_button);
 		bottomPortion.add(close_button);
 		
 		
@@ -91,12 +99,9 @@ public class editItemViewer extends JDialog{
 	}
 	
 	
-	
-	//setter to change the table to a new model
-	
-	
-	//swap the cards
-	
+	/**Attach ActionListener to the 'Close' and 'Confirmed changes' button
+	 * 
+	 */
 	public void addACL() {
 		  close_button.addActionListener(new ActionListener()
 			{
@@ -112,7 +117,7 @@ public class editItemViewer extends JDialog{
 				  
 				});
 			
-			view_button.addActionListener(new ActionListener()
+			confirm_button.addActionListener(new ActionListener()
 			{
 				  public void actionPerformed(ActionEvent e)
 				  {
@@ -179,32 +184,6 @@ public class editItemViewer extends JDialog{
 		cl.show(search_panel, panel);
 	}
 	
-	/**
-	  close_button.addActionListener(new ActionListener()
-		{
-			  public void actionPerformed(ActionEvent e)
-			  {
-			    // display/center the jdialog when the button is pressed
-				  System.out.println("WWW");
-				  setVisible(false);
-				  System.out.println(getTitle());
-				  dispose();
-			  }
-			  
-			});
-		
-		view_button.addActionListener(new ActionListener()
-		{
-			  public void actionPerformed(ActionEvent e)
-			  {
-			    // display/center the jdialog when the button is pressed
-				  System.out.println("GET");
-				  System.out.println(getDescription());
-				  
-				  
-			  }
-			});
-	 */
 	
 }
 

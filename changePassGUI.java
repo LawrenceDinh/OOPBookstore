@@ -3,6 +3,11 @@
 
 import javax.swing.*;
 
+/**Initialize the change password GUI through changePasswordUI() method.
+ * Waits until user updates the empty textfield or clicks the "Cancel" JButton.
+ * @author LUAT DINH
+ */
+
 
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -13,34 +18,32 @@ import java.util.concurrent.CountDownLatch;
 
 import javax.swing.*; 
 public class changePassGUI extends JFrame implements ActionListener { 
-    // JTextField 
+	
+	
     private static JTextField t; 
-  
-    // JFrame s
     private static JFrame f; 
-  
-    // JButton 
     private static JButton b; 
     private static JButton exit; 
-    // label to display text 
-    private static JLabel l, title; 
-  
+    private static JLabel title; 
     private UserClass thisUser;
 	private CountDownLatch latch;
-    // default constructor 
+	
+    //constructor 
     public changePassGUI(UserClass thisUser2, CountDownLatch cd) 
     { 
     	latch = cd;
     	thisUser = thisUser2;
     } 
   
-    // main class 
+	/**Constructs frames and elements for changePassGUI
+	 */
+    
     public void changePasswordUI()
     {
 
         // create a new frame to store text field and button 
         f = new JFrame("Change User's Password"); 
-  
+		f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         title = new JLabel("Change User's Password");
         title.setFont(new Font("Arial", Font.BOLD, 14));
         // create a label to display text 
@@ -93,7 +96,9 @@ public class changePassGUI extends JFrame implements ActionListener {
         f.setVisible(true); 
     } 
   
-    // if the vutton is pressed 
+	/**Adds an ActionListener to the "Confirm Changes"
+	 * @param e the event
+	 */
     public void actionPerformed(ActionEvent e) 
     { 
         String s = e.getActionCommand(); 

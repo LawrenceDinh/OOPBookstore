@@ -7,6 +7,10 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.concurrent.CountDownLatch;
  
+/**Displays a window with two textfields to sign up along  
+ * with 'Login', 'Exit', and 'Back to Signup Screen' buttons. 
+ * @author LUAT DINH
+ */
 public class LogInFrame extends JFrame{
  
     private static final int FRAME_WIDTH = 500;
@@ -32,7 +36,9 @@ public class LogInFrame extends JFrame{
      
      }
 
- 
+    /**Creates the Login JFrame and adds elements to it.
+     * 
+     */
     private void createComponents() throws FileNotFoundException {
         userNameField = new JTextField(10);
         passwordField = new JTextField(10);
@@ -77,6 +83,9 @@ public class LogInFrame extends JFrame{
  
     
     //exit 
+    /**Exit button ActionListener
+     * 
+     */
     public class ClickListener1 implements ActionListener {
  
         public void actionPerformed(ActionEvent event) {
@@ -89,7 +98,9 @@ public class LogInFrame extends JFrame{
     }
  
  
- 
+    /**Login button ActionListener
+     * 
+     */
     public class ClickListener2 implements ActionListener {
  
         public void actionPerformed(ActionEvent event) {
@@ -142,6 +153,9 @@ public class LogInFrame extends JFrame{
     }
    
 
+    /**Back to Sign Up Screen Page ActionListener
+     * 
+     */
     public class ClickListener3 implements ActionListener {
     	 
         public void actionPerformed(ActionEvent event) {
