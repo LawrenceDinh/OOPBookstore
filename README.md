@@ -2,7 +2,7 @@
 
 Please note you can download this project by clicking on the green "Clone or download" button
 
-MOST UPDATED VERSION: SJSU CS 151 Project
+MOST UPDATED VERSION: SJSU CS 151 Project 12/2/2019
 
 Project Report Document: https://docs.google.com/document/d/1X3oBoukzML1SQoDn3zbapv81cD69cOxALhxFRSZpQkQ/view
 
@@ -40,6 +40,4 @@ It retains the view details functionality of the search window, but also allows 
 When the user is finished with any particular dashboard window, they can press the close button to return to the dashboard.
 
 ##Authors and acknowledgement
-Project Authors: Benjamin Townsend, Kevin Ngo, Luat Dinh, Jinhan Han
-
-Date: 12/2/2019
+Project Authors: Benjamin Townsend, Kevin Ngo, Luat Dinh, Jinhan Han 
