@@ -6,7 +6,7 @@ MOST UPDATED VERSION: CS 151 Project
 
 Project Report Document: https://docs.google.com/document/d/1X3oBoukzML1SQoDn3zbapv81cD69cOxALhxFRSZpQkQ/view
 
-Project Test Cases: https://docs.google.com/document/d/1X3oBoukzML1SQoDn3zbapv81cD69cOxALhxFRSZpQkQ/view
+Project Test Cases: https://docs.google.com/document/d/1bB2-h1vtWRPT9ZE8YUumD0tjo-yt88GbgF7f46x4iJo/edit?usp=sharing
 
 #E-Commerce System
 
