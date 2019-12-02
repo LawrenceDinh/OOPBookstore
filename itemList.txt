@@ -1,4 +1,4 @@
-8
+9
 1~item1changed~0~item1 desc~a
 2~item2~2~item2 desc~a
 3~Enter title:~0~Enter description:~a
@@ -6,3 +6,4 @@
 5~Catcher and the Rye~1~the fun adventures of holden~Bob
 7~book45~1~asdf~Alice
 8~book3~1~ba~Alice
+9~new item1 name~0~desc change for item1~a b

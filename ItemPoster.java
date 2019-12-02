@@ -202,8 +202,9 @@ public class ItemPoster extends JFrame{
 	        {
 	          frame.setVisible(false);
 	          //black out this window
-	          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	          frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	          frame.dispose();
+	          cdLatch.countDown();
 	          //close window
 	        }
 	    });
@@ -215,7 +216,7 @@ public class ItemPoster extends JFrame{
 	    GridLayOut();
 	
 	    frame.setVisible(true);
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
   }
   
 }
