@@ -15,7 +15,6 @@ public class Commerce {
 		//Commented out for testing non-gui things; uncomment to use
 		Viewer view = new Viewer(sessionUsers, loginSignal);  //passing in UserManager sessionUsers variable as a parameter 
 		view.display();
-		
 		//loginSignal.countDown();
 		//loginSignal.await();
 		UserClass test = null;
