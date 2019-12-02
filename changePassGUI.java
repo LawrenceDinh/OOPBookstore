@@ -44,7 +44,7 @@ public class changePassGUI extends JFrame implements ActionListener {
         title = new JLabel("Change User's Password");
         title.setFont(new Font("Arial", Font.BOLD, 14));
         // create a label to display text 
-        l = new JLabel("Nothing entered"); 
+       // l = new JLabel("Nothing entered"); 
   
         // create a new button 
         b = new JButton("Confirm Changes"); 
@@ -68,7 +68,7 @@ public class changePassGUI extends JFrame implements ActionListener {
         // add buttons and textfield to panel 
         p.add(title);
         p.add(t); 
-        p.add(l); 
+       // p.add(l); 
         p.add(n);
         p.add(b); 
         p.add(exit);
@@ -100,7 +100,7 @@ public class changePassGUI extends JFrame implements ActionListener {
         if (s.equals("Confirm Changes")) { 
             // set the text of the label to the text of the field 
         	if(!stringEmpty(t.getText())) {
-            l.setText(t.getText()); 
+            //l.setText(t.getText()); 
             thisUser.setPassword(t.getText());
             System.out.println("New pass: " + t.getText());
             // set the text of field to blank 
