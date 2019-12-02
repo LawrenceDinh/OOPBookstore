@@ -80,7 +80,7 @@ public int getChoice() {
 	  
       JFrame frame = new JFrame("Dashboard User Interface");
       frame.setTitle("Dashboard");
-      frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setContentPane(new DashboardFrame(latch, option, intInput, userName));
       frame.setPreferredSize(new Dimension(500, 300));
       frame.pack();
@@ -118,8 +118,6 @@ public int getChoice() {
 	 
       public void actionPerformed(ActionEvent e) {
     	int n = search();
-		//c.setChoice(n);
-		//System.out.println("yay: " + n );
     	if (n == -1) {
         	JOptionPane.showMessageDialog(null, "Please select atleast one field.", "Error!",
 					JOptionPane.ERROR_MESSAGE);

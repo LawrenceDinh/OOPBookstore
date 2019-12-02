@@ -3,18 +3,6 @@ import java.util.concurrent.CountDownLatch;
 public class DashboardDriver {
 
 	
-	/**
-	 * 7
-1~ww~a~0
-6~a c ~a b ~0
-3~a~my p~0`1`2`3
-4~ab~a~0
-5~a b ~a~0
-7~Bob~pass1~0`4`5
-2~aaww~a~0
-
-	 */
-	
 	
 	private int choice = -1;
 	DashboardChoiceSelected c;
@@ -31,7 +19,6 @@ public class DashboardDriver {
 		int choice = -1;
 		 c = new DashboardChoiceSelected(-1);
 		DashboardFrame m = new DashboardFrame(loginSignal, choice, c, thisUser);
-		
 		m.run();
 	
 		//System.out.println("success: " + (c.getChoice()));

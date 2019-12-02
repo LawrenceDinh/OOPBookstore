@@ -75,10 +75,10 @@ public class ItemPoster extends JFrame{
 	    
 	    final int FIELD_WIDTH = 35;
 	    
-	    JLabel titleQ = new JLabel("\t   Title: ");
-	    JLabel useridQ = new JLabel("\t   The User ID: ");
-	    JLabel categoryQ = new JLabel("\t   Category lists: ");
-	    JLabel descriptionQ = new JLabel("\t   Description: ");
+	    JLabel titleQ = new JLabel("\t   Title : ");
+	    JLabel useridQ = new JLabel("\t   The User ID : ");
+	    JLabel categoryQ = new JLabel("\t   Category lists ");
+	    JLabel descriptionQ = new JLabel("\t   Description ");
 	    // all question Jlabel groups
 	    
 	    titleName = new JTextField(FIELD_WIDTH);

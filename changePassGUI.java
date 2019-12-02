@@ -90,7 +90,7 @@ public class changePassGUI extends JFrame implements ActionListener {
 			  }
 			  
 			});
-        f.show(); 
+        f.setVisible(true); 
     } 
   
     // if the vutton is pressed 

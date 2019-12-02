@@ -22,9 +22,6 @@ public class Viewer {
 	public void display() throws FileNotFoundException, InterruptedException {
 
 
-			// System.out.println(users.searchUserID(1).getUserName());
-
-			// users = UserManager Users
 			LogInFrame = new LogInFrame(users, latch, SignUpFrame);
 			SignUpFrame = new SignUpFrame(users, LogInFrame, latch);
 
@@ -41,21 +38,6 @@ public class Viewer {
 			
 			}
 			
-
-		//SignUpFrame.setVisible(false);
-		/**
-		System.out.println(user);
-		int i =0;
-			while(((LogInFrame) LogInFrame).returnUser()==null){
-				//looping through the login UI to check if 
-				//login was successful
-				//System.out.println("t");
-				System.out.println(i);
-				i++;
-				if (((LogInFrame) LogInFrame).returnUser()!=null) {
-				System.out.println(((LogInFrame) LogInFrame).returnUser().getUserName());
-			}}
-		System.out.println("testpppp");**/
 
 	
 

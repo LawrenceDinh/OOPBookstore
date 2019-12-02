@@ -147,9 +147,7 @@ public class LogInFrame extends JFrame{
             System.out.println("back");
             setVisible(false);
 
-        
-            	//exit = userData.generateUser("admin","pass");
-            	//user = exit;
+      
 				sFrame.setVisible(true);
 
 			
