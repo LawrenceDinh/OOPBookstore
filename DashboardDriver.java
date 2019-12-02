@@ -1,7 +1,9 @@
 import java.util.concurrent.CountDownLatch;
 
-/**Initialize the change password GUI through changePasswordUI() method.
- * Waits until user updates the empty textfield or clicks the "Cancel" JButton.
+/** Control class for Dashboard UserInterface. 
+ * Calls methods to run DashboardFrame GUI and 
+ * get the userChoice to use in a switch statement.
+ * The switch statement then displays the desired UI.
  * @author LUAT DINH
  */
 
@@ -15,11 +17,24 @@ public class DashboardDriver {
 	ItemManager items;
 	UserManager users;
 	UserClass thisUser;
+	
+	/**
+	 * Constructs a LogInFrame
+	 * @param itemInstance is instance of ItemManager
+	 * @param userInstance is instance of userManager
+	 * @param currentUser is instance of UserClass currently logged in.
+	 */
 	public DashboardDriver(ItemManager itemInstance, UserManager userInstance, UserClass currentUser) {
 		items = itemInstance;
 		users = userInstance;
 		thisUser = currentUser;
 	}
+	
+	/**
+	 * Generates a new dashboard frame and wait for the user to 
+	 * select an input.
+	 *
+	 */
 	public void runDashboard() throws InterruptedException{
 		CountDownLatch loginSignal = new CountDownLatch(1);
 		int choice = -1;
@@ -43,6 +58,11 @@ public class DashboardDriver {
 		return thisUser;
 	}
 	
+	/**
+	 * Switch statement that displays the UI that users chooses from dashboard.
+	 * Calls runDashboard again after closing to redisplay dashboard. 
+	 *
+	 */
 	public void stepForward() throws InterruptedException {
 		System.out.println("logged in as: " + getCurrentUser().getUserName());
 		switch(c.getChoice()) {
