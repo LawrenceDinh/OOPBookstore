@@ -19,7 +19,7 @@ public class ItemPoster extends JFrame{
 	
 	private ItemManager itemManager;
 	public ItemClass itemplug = new ItemClass( 0,"", 0, "", "");
-	//long itemID, String itemName, int categoryNumber, String description, String sellerName
+	//long itemID, String itemName, int categoryNumber, String description, String sellerName AS PARAMETER
 	
 	private String categories[];
 	public JList cs; 
@@ -37,47 +37,32 @@ public class ItemPoster extends JFrame{
 		usr = userInfo;
 	}
 	
-	public JScrollPane categoryScroll(String list[])
+	public JScrollPane categoryScroll(String list[]) //Creating J scrollCategory lists 
   {
 	  cs = new JList(categories);
-	  categories = itemManager.getCategories();  
+	  // create JList with categories
+	  
       cs.setOpaque(true);
       cs.setVisibleRowCount(4);
+      //4rows displayed
       cs.setSelectedIndex(0);
-	
+      //default selected index
       JScrollPane scrollCategory = new JScrollPane(cs);
       return scrollCategory;
   }
-	/*
-  public ImageIcon ResizeImage(String ImagePath)
-  {
-      ImageIcon MyImage = new ImageIcon(ImagePath);
-      Image img = MyImage.getImage();
-      Image newImg = img.getScaledInstance(300, 180, Image.SCALE_SMOOTH);
-      ImageIcon image = new ImageIcon(newImg);
-      return image;
-  }
-  
-  public String times()
-  {
-	  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-	    LocalDateTime now = LocalDateTime.now();
-		 String time = dtf.format(now);         
-		 return time;
-  }
-  */
-  
-  public void GridLayOut() 
+	
+	
+  public void GridLayOut() // layout with grid
   {
 	  frame = new JFrame();
 	  frame.setSize(600, 600);
 	  	
-	  	//uploadButton = new JButton("Choose photo");
+	  	
 		postButton = new JButton("Post");
 		cancelButton = new JButton("cancel");
-		imglbl = new JLabel();
+		//button groups
 
-		buttonAction() ;
+		buttonAction() ;// buttonAction method includes all button's actions
 
 	    JPanel p1 = new JPanel();
 	    JPanel p2 = new JPanel();
@@ -86,33 +71,37 @@ public class ItemPoster extends JFrame{
 	    p1.setLayout(new GridLayout(3, 2)); 
 	    p2.setLayout(new GridLayout(2, 2)); 
 	    p3.setLayout(new GridLayout(1, 2));
-	    // Creating Object P2 of JPanel class  
+	    // Creating Object P1, P2, P3 of JPanel class  
 	    
 	    final int FIELD_WIDTH = 35;
 	    
-	    JLabel titleQ = new JLabel("\t   Title : ");
-	    JLabel useridQ = new JLabel("\t   The User ID : ");
-	    JLabel categoryQ = new JLabel("\t   Category lists ");
-	    JLabel descriptionQ = new JLabel("\t   Description ");
-	    JLabel imgQ = new JLabel("\t image : ");
+	    JLabel titleQ = new JLabel("\t   Title: ");
+	    JLabel useridQ = new JLabel("\t   The User ID: ");
+	    JLabel categoryQ = new JLabel("\t   Category lists: ");
+	    JLabel descriptionQ = new JLabel("\t   Description: ");
+	    // all question Jlabel groups
 	    
 	    titleName = new JTextField(FIELD_WIDTH);
 	    titleName.setFont(titleName.getFont().deriveFont(30f));
 	    //adjust font size in Jtext field
+	    
 	    titleName.setText("Enter title:");
 	   
 	    JLabel guiId = new JLabel(usr.getUserName());
+	    // get userId from user and assing in Id label
 	    
-	    descriptionField = new JTextArea(10, FIELD_WIDTH);
+	    descriptionField = new JTextArea(10, FIELD_WIDTH); // size of description field
 	    descriptionField.setText("Enter description:");
 	    
 	    p1.add(titleQ);
 	    p1.add(titleName);
 	    p1.add(useridQ);
 	    p1.add(guiId);
+	    //add labels on p1
 	    
 	    p1.add(categoryQ);
 	    p1.add(categoryScroll(categories));
+	    // add category list
 	    //p1.add(descriptionQ);
 	    //p1.add(descriptionField);
 	    
@@ -120,42 +109,21 @@ public class ItemPoster extends JFrame{
 	    //p2.add(imglbl);
 	    p2.add(descriptionQ);
 	    p2.add(descriptionField);
+	    //add description fields
 	    
 	    p3.add(postButton);
 	    p3.add(cancelButton);
-	   
+	   //add buttons
+	    
 	    frame.add(p1, "North");
 	    frame.add(p2, "Center");
 	    frame.add(p3, "South");
-	    
+	    //set the location of grided label
   }
   
   //In this method, there are button action groups 
   public void buttonAction() 
-  {
-	  /*uploadButton.addActionListener(new ActionListener() {
-
-	        public void actionPerformed(ActionEvent e) {
-	        
-	          JFileChooser file = new JFileChooser();
-	          file.setCurrentDirectory(new File(System.getProperty("user.home")));
-	          //filter the files
-	          FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg","gif","png");
-	          file.addChoosableFileFilter(filter);
-	          int result = file.showSaveDialog(null);
-	          
-	          if(result == JFileChooser.APPROVE_OPTION){
-	              File selectedFile = file.getSelectedFile();
-	              String path = selectedFile.getAbsolutePath();
-	              imglbl.setIcon(ResizeImage(path));
-	          }
-
-	          else if(result == JFileChooser.CANCEL_OPTION){
-	              System.out.println("No File Select");
-	          }
-	        }
-	    });*/
-	  
+  {  
 	  postButton.addActionListener(new ActionListener() { 
 			 
       	  public void actionPerformed(ActionEvent e) 
@@ -163,9 +131,7 @@ public class ItemPoster extends JFrame{
       		
 	        if (e.getActionCommand().equals("Post"))
 	        {
-	            //int index = cs.getSelectedIndex();
 	            
-	        
 	            String itemTitle = titleName.getText();
 	            //entered Jtext get converted into string item title 
 	            
@@ -175,10 +141,8 @@ public class ItemPoster extends JFrame{
 	            //entered Jtext get converted into string description 
 	            
 	            System.out.println(descript);
-	            
 	            System.out.println(cs.getSelectedValue());
 	           
-	            
 	            
 	            String catego = (String)cs.getSelectedValue();
 	            //selected category 
@@ -189,6 +153,7 @@ public class ItemPoster extends JFrame{
 	            //"Health & Beauty", "Home Improvement", "Sporting Goods", "Toys", "Other"
 		
 	            
+	            // set category number following selected category 
 	            if(catego.equals(categories[0]))
 	            	categoNum =0;
 	            else if(catego.equals(categories[1]))
@@ -216,8 +181,14 @@ public class ItemPoster extends JFrame{
 	            
 	            itemManager.generateItem(itemTitle, categoNum, descript, usr.getUserName());
 	            //(String itemName, int categoryNumber, String description, String sellerName)
-	           frame.dispose();
+	           //generate item Id and register items on the list
+	            
+	            frame.dispose();
+	            //end this window
+	            
 	           usr.addListedItemID(itemManager.getPreviousItemID());
+	           // add item id
+	           
 	           cdLatch.countDown();
 	            //They make an item element on the itemmanager
 	        }
@@ -230,27 +201,21 @@ public class ItemPoster extends JFrame{
 	        public void actionPerformed(ActionEvent e) 
 	        {
 	          frame.setVisible(false);
+	          //black out this window
+	          frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	          frame.dispose();
-	          cdLatch.countDown();
 	          //close window
 	        }
 	    });
   }
   
   
-  public void dragAndDropDisplay() {
-	
+  public void dragAndDropDisplay() {//display method to call displaying methods
 	  
 	    GridLayOut();
-	      
-	 
-    frame.setVisible(true);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
+	    frame.setVisible(true);
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
   
 }
-
-
-
-
-
