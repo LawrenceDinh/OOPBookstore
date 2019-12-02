@@ -2,7 +2,7 @@
 
 Please note you can download this project by clicking on the green "Clone or download" button
 
-MOST UPDATED VERSION: CS 151 Project
+MOST UPDATED VERSION: CS 151 Project SJSU Fall 2019
 
 Project Report Document: https://docs.google.com/document/d/1X3oBoukzML1SQoDn3zbapv81cD69cOxALhxFRSZpQkQ/view
 
