@@ -1,8 +1,15 @@
+package groupproject;
+
 import java.util.concurrent.CountDownLatch;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
+/*
+* @author Jinhan Han
+*
+*/
 
 public class ItemPoster extends JFrame{
 

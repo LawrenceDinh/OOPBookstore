@@ -1,3 +1,6 @@
+package groupproject;
+
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -15,6 +18,12 @@ import java.awt.image.BufferedImage;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;  
 import java.io.*;
+
+
+/*
+* @author Jinhan Han
+*
+*/
 
 public class shownItem extends JFrame{
 
